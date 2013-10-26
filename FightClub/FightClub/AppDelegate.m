@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "LoginViewController.h"
 
 @implementation AppDelegate
 
@@ -20,6 +21,15 @@
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+    
+    LoginViewController *loginViewController = [[LoginViewController alloc] initWithNibName:nil bundle:nil];
+    
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:loginViewController];
+    
+    //we initially hide the navigation bar as we don't need this in login page
+    navigationController.navigationBarHidden = YES;
+    self.window.rootViewController = navigationController;
+    
     return YES;
 }
 
