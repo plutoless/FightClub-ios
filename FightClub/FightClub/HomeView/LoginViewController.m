@@ -8,6 +8,7 @@
 
 #import "LoginViewController.h"
 #import "FcConstant.h"
+#import "SecManager.h"
 
 @interface LoginViewController ()
 
@@ -95,6 +96,7 @@
     [self.loginBtn setTitleColor:[UIColor colorWithWhite:1 alpha:1] forState:UIControlStateNormal];
     self.loginBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
     [self.loginBtn setEnabled:YES];
+    [self.loginBtn addTarget:self action:@selector(login) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void) dismissKeyboard
@@ -102,6 +104,10 @@
     if (self.activeTextField != nil) {
         [self.activeTextField resignFirstResponder];
     }
+}
+
+- (void) login
+{
 }
 
 #pragma UITableViewDelegate UITableDatasource functions
@@ -157,7 +163,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
 }
 
 #pragma UITextField
@@ -170,4 +175,16 @@
 {
     self.activeTextField = nil;
 }
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    if (self.activeTextField == self.username) {
+        [self.password becomeFirstResponder];
+    } else if (self.activeTextField == self.password){
+        [self dismissKeyboard];
+    }
+    
+    return YES;
+}
+
 @end
