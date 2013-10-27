@@ -29,7 +29,7 @@
     //we initially hide the navigation bar as we don't need this in login page
     navigationController.navigationBarHidden = YES;
     self.window.rootViewController = navigationController;
-    
+    self.window.rootViewController.modalPresentationStyle = UIModalPresentationCurrentContext;
     return YES;
 }
 

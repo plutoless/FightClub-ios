@@ -9,6 +9,9 @@
 #import "LoginViewController.h"
 #import "FcConstant.h"
 #import "SecManager.h"
+#import "FcAlert.h"
+#import "BusyIndicator.h"
+#import "LoginOperation.h"
 
 @interface LoginViewController ()
 
@@ -106,8 +109,35 @@
     }
 }
 
+- (BOOL) validateLoginInfo
+{
+    if ([[self.username text] isEqualToString:@""] || [[self.password text] isEqualToString:@""]) {
+        [[FcAlert getInstance] showInfoAlertwithTitle:@"Error" message:@"Please fill in all required fields"];
+        return NO;
+    }
+    
+    
+    return YES;
+}
+
 - (void) login
 {
+    if (![self validateLoginInfo]) {
+        return;
+    }
+    
+    SecManager * manager = [SecManager getInstance];
+    [[manager secAttributes] setObject:[self.username text] forKey:SEC_ATTR_TEMP_USER];
+    [[manager secAttributes] setObject:[self.password text] forKey:SEC_ATTR_TEMP_PASS];
+    
+    [self presentViewController:[BusyIndicator getInstance] animated:NO completion:nil];
+    LoginOperation* operation = [[LoginOperation alloc] initWithObject:self target:@selector(didFinishLogin)];
+    [operation start];
+}
+
+- (void) didFinishLogin
+{
+    [self dismissViewControllerAnimated:NO completion:nil];
 }
 
 #pragma UITableViewDelegate UITableDatasource functions
@@ -182,6 +212,7 @@
         [self.password becomeFirstResponder];
     } else if (self.activeTextField == self.password){
         [self dismissKeyboard];
+        [self login];
     }
     
     return YES;

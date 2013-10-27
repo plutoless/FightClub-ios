@@ -15,7 +15,11 @@
 #define LOGIN_FORM_TABLE_HEIGHT 500
 #define LOGIN_FORM_AVATAR_HEIGHT 80
 
-#define SEC_ATTR_USER @"username"
-#define SEC_ATTR_PASS @"password"
+#define SEC_ATTR_USER @"user"
+#define SEC_ATTR_PASS @"pwd"
+#define SEC_ATTR_TEMP_USER @"tuser"
+#define SEC_ATTR_TEMP_PASS @"tpwd"
+
+#define SERVICE_MACRO_LOGIN @"loginService"
 
 #endif

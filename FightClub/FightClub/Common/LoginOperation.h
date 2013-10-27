@@ -8,6 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
-@interface LoginOperation : NSOperation<NSURLConnectionDelegate>
+@interface LoginOperation : NSOperation<NSURLConnectionDataDelegate>
+
+@property (nonatomic, retain) NSMutableData* data;
+@property (nonatomic, assign) SEL target;
+@property (nonatomic, assign) id object;
+
+- (id) initWithObject:(id)object target:(SEL)target;
 
 @end
