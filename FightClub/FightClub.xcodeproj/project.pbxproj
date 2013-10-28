@@ -16,6 +16,8 @@
 		0D3EF29F181CAD8B00B035DB /* FcAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D3EF29E181CAD8B00B035DB /* FcAlert.m */; };
 		0D3EF2A2181CB67B00B035DB /* ServicesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D3EF2A1181CB67B00B035DB /* ServicesManager.m */; };
 		0DE2F1CB181D65DF006EDEA4 /* BusyIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DE2F1CA181D65DF006EDEA4 /* BusyIndicator.m */; };
+		0DE2F1CE181EB532006EDEA4 /* BaseHttpOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DE2F1CD181EB532006EDEA4 /* BaseHttpOperation.m */; };
+		0DE2F1D1181EB571006EDEA4 /* OperationParams.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DE2F1D0181EB571006EDEA4 /* OperationParams.m */; };
 		0DF39B76181968B200F6B500 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DF39B75181968B200F6B500 /* Foundation.framework */; };
 		0DF39B78181968B200F6B500 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DF39B77181968B200F6B500 /* CoreGraphics.framework */; };
 		0DF39B7A181968B200F6B500 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DF39B79181968B200F6B500 /* UIKit.framework */; };
@@ -61,6 +63,10 @@
 		0D3EF2A1181CB67B00B035DB /* ServicesManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ServicesManager.m; path = Common/ServicesManager.m; sourceTree = "<group>"; };
 		0DE2F1C9181D65DF006EDEA4 /* BusyIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BusyIndicator.h; path = Common/BusyIndicator.h; sourceTree = "<group>"; };
 		0DE2F1CA181D65DF006EDEA4 /* BusyIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BusyIndicator.m; path = Common/BusyIndicator.m; sourceTree = "<group>"; };
+		0DE2F1CC181EB532006EDEA4 /* BaseHttpOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BaseHttpOperation.h; path = Common/BaseHttpOperation.h; sourceTree = "<group>"; };
+		0DE2F1CD181EB532006EDEA4 /* BaseHttpOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BaseHttpOperation.m; path = Common/BaseHttpOperation.m; sourceTree = "<group>"; };
+		0DE2F1CF181EB571006EDEA4 /* OperationParams.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OperationParams.h; path = Common/OperationParams.h; sourceTree = "<group>"; };
+		0DE2F1D0181EB571006EDEA4 /* OperationParams.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OperationParams.m; path = Common/OperationParams.m; sourceTree = "<group>"; };
 		0DF39B72181968B200F6B500 /* FightClub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FightClub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0DF39B75181968B200F6B500 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		0DF39B77181968B200F6B500 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -138,6 +144,10 @@
 				0D3EF2A1181CB67B00B035DB /* ServicesManager.m */,
 				0DE2F1C9181D65DF006EDEA4 /* BusyIndicator.h */,
 				0DE2F1CA181D65DF006EDEA4 /* BusyIndicator.m */,
+				0DE2F1CC181EB532006EDEA4 /* BaseHttpOperation.h */,
+				0DE2F1CD181EB532006EDEA4 /* BaseHttpOperation.m */,
+				0DE2F1CF181EB571006EDEA4 /* OperationParams.h */,
+				0DE2F1D0181EB571006EDEA4 /* OperationParams.m */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -329,11 +339,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				0DE2F1CB181D65DF006EDEA4 /* BusyIndicator.m in Sources */,
+				0DE2F1D1181EB571006EDEA4 /* OperationParams.m in Sources */,
 				0DF39B88181968B200F6B500 /* AppDelegate.m in Sources */,
 				0D3EF299181C182F00B035DB /* LoginOperation.m in Sources */,
 				0DF39B8B181968B200F6B500 /* FightClub.xcdatamodeld in Sources */,
 				0DF39B84181968B200F6B500 /* main.m in Sources */,
 				0D099F8418196F08004667B6 /* FightClubRootViewController.m in Sources */,
+				0DE2F1CE181EB532006EDEA4 /* BaseHttpOperation.m in Sources */,
 				0D3EF2A2181CB67B00B035DB /* ServicesManager.m in Sources */,
 				0D3EF29F181CAD8B00B035DB /* FcAlert.m in Sources */,
 				0D3EF29C181C1A0000B035DB /* SecManager.m in Sources */,

@@ -15,11 +15,18 @@
 #define LOGIN_FORM_TABLE_HEIGHT 500
 #define LOGIN_FORM_AVATAR_HEIGHT 80
 
-#define SEC_ATTR_USER @"user"
-#define SEC_ATTR_PASS @"pwd"
-#define SEC_ATTR_TEMP_USER @"tuser"
-#define SEC_ATTR_TEMP_PASS @"tpwd"
+#define SEC_ATTR_USER                       @"user"
+#define SEC_ATTR_PASS                       @"pwd"
+#define SEC_ATTR_TEMP_USER                  @"tuser"
+#define SEC_ATTR_TEMP_PASS                  @"tpwd"
+#define SEC_ATTR_UID                        @"uid"
 
-#define SERVICE_MACRO_LOGIN @"loginService"
+#define SERVICE_MACRO_LOGIN                 @"loginService"
+
+#define LOGIN_RESPONSE_STATUS               @"valid"
+#define LOGIN_RESPONSE_DATA                 @"data"
+#define LOGIN_RESPONSE_DATA_UID             @"uid"
+
+#define TASK_ATTR_CONTENT                   @"content"
 
 #endif

@@ -1,17 +1,17 @@
 //
-//  LoginOperation.m
+//  BaseHttpOperation.m
 //  FightClub
 //
-//  Created by Zhang, Qianze on 10/26/13.
+//  Created by Zhang, Qianze on 10/28/13.
 //  Copyright (c) 2013 Zhang, Qianze. All rights reserved.
 //
 
-#import "LoginOperation.h"
+#import "BaseHttpOperation.h"
 #import "ServicesManager.h"
 #import "SecManager.h"
 #import "FcConstant.h"
 
-@implementation LoginOperation
+@implementation BaseHttpOperation
 
 - (id) init
 {
@@ -34,11 +34,32 @@
     return self;
 }
 
+- (id) initWithObject:(id)object target:(SEL)target type:(FcServiceType)type
+{
+    self = [self init];
+    if (self != nil) {
+        self.target = target;
+        self.object = object;
+        self.type = type;
+    }
+    
+    return self;
+}
+
+- (id) initWithObject:(id)object target:(SEL)target param:(OperationParams*)param
+{
+    self = [self init];
+    if (self != nil) {
+        self.target = target;
+        self.object = object;
+    }
+    
+    return self;
+}
+
 - (void) main
 {
-    NSString* baseUrlString = [[[ServicesManager getInstance] services] valueForKey:SERVICE_MACRO_LOGIN];
-    NSMutableDictionary* credential = [[SecManager getInstance] secAttributes];
-    NSString* urlString = [NSString stringWithFormat:@"%@?username=%@&password=%@", baseUrlString, [credential valueForKey:SEC_ATTR_TEMP_USER], [credential valueForKey:SEC_ATTR_TEMP_PASS]];
+    NSString* urlString = [ServicesManager getServiceURLById:self.type];
     NSURL* requestURL = [NSURL URLWithString:urlString];
     
     if (requestURL != nil) {
@@ -58,7 +79,7 @@
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
-
+    
 }
 
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
@@ -73,5 +94,6 @@
         [self.object performSelector:self.target withObject:jsonData];
     }
 }
+
 
 @end

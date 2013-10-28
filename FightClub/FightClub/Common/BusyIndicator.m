@@ -25,11 +25,11 @@ static BusyIndicator* busyIndicator;
         
         [modalView setBackgroundColor:[UIColor colorWithWhite:0.5 alpha:0.5]];
         
-        UIActivityIndicatorView* indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
-        CGRect indicatorFrame = indicator.frame;
+        self.indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+        CGRect indicatorFrame = self.indicator.frame;
         
-        [indicator setFrame:CGRectMake(frame.size.width/2 - indicatorFrame.size.width/2, frame.size.height/2 - indicatorFrame.size.height/2, indicatorFrame.size.width, indicatorFrame.size.height)];
-        [modalView addSubview:indicator];
+        [self.indicator setFrame:CGRectMake(frame.size.width/2 - indicatorFrame.size.width/2, frame.size.height/2 - indicatorFrame.size.height/2, indicatorFrame.size.width, indicatorFrame.size.height)];
+        [modalView addSubview:self.indicator];
         
         self.view = modalView;
     }
@@ -47,6 +47,20 @@ static BusyIndicator* busyIndicator;
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)showFromController:(UIViewController*)fromController
+{
+    [fromController presentViewController:self animated:NO completion:^{
+        [self.indicator startAnimating];
+    }];
+}
+
+- (void)dismissFromController:(UIViewController*)fromController
+{
+    [fromController dismissViewControllerAnimated:NO completion:^{
+        [self.indicator stopAnimating];
+    }];
 }
 
 + (BusyIndicator*)getInstance

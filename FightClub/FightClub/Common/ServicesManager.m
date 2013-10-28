@@ -8,8 +8,9 @@
 
 #import "ServicesManager.h"
 #import "FcConstant.h"
+#import "SecManager.h"
 
-#define FC_SERVER_BASE_URL @"http://kilimanjarotech.com/fightclub/service/common/"
+#define FC_SERVER_BASE_URL @"http://kilimanjarotech.com/fightclub/service/"
 
 @implementation ServicesManager
 
@@ -20,7 +21,7 @@ static ServicesManager* serviceManager;
     self = [super init];
     if (self != nil) {
         self.services = [[NSMutableDictionary alloc] init];
-        [self.services setObject:[FC_SERVER_BASE_URL stringByAppendingString:@"login.php"] forKey:SERVICE_MACRO_LOGIN];
+        [self.services setObject:[FC_SERVER_BASE_URL stringByAppendingString:@"common/login.php"] forKey:SERVICE_MACRO_LOGIN];
     }
     
     return self;
@@ -33,6 +34,28 @@ static ServicesManager* serviceManager;
     }
     
     return serviceManager;
+}
+
++ (NSString*)getServiceURLById:(FcServiceType)type
+{
+    NSString* url = nil;
+    NSString* uid = nil;
+    switch (type) {
+        case FC_SERVICE_TYPE_LOGIN:
+            
+            break;
+        case FC_SERVICE_TYPE_GET_USER_TASK:
+            uid = [[[SecManager getInstance] secAttributes] valueForKey:SEC_ATTR_UID];
+            if (uid == nil) {
+                uid = @"-1";
+            }
+            url = [NSString stringWithFormat:@"%@common/webactions.php?uid=%@&webaction=%d", FC_SERVER_BASE_URL, uid, 1];
+            break;
+        default:
+            break;
+    }
+    
+    return url;
 }
 
 @end

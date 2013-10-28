@@ -12,6 +12,8 @@
 #import "FcAlert.h"
 #import "BusyIndicator.h"
 #import "LoginOperation.h"
+#import "BaseHttpOperation.h"
+#import "FightClubRootViewController.h"
 
 @interface LoginViewController ()
 
@@ -130,14 +132,35 @@
     [[manager secAttributes] setObject:[self.username text] forKey:SEC_ATTR_TEMP_USER];
     [[manager secAttributes] setObject:[self.password text] forKey:SEC_ATTR_TEMP_PASS];
     
-    [self presentViewController:[BusyIndicator getInstance] animated:NO completion:nil];
-    LoginOperation* operation = [[LoginOperation alloc] initWithObject:self target:@selector(didFinishLogin)];
+    [[BusyIndicator getInstance] showFromController:self];
+    LoginOperation* operation = [[LoginOperation alloc] initWithObject:self target:@selector(didFinishLoginWith:)];
     [operation start];
 }
 
-- (void) didFinishLogin
+- (void) didFinishLoginWith:(NSDictionary*)Response
 {
-    [self dismissViewControllerAnimated:NO completion:nil];
+    BOOL valid = [[Response valueForKey:LOGIN_RESPONSE_STATUS] boolValue];
+    if (!valid) {
+        [[BusyIndicator getInstance] dismissFromController:self];
+        [[FcAlert getInstance] showInfoAlertwithTitle:@"Error" message:@"Login Failed. Please check your username and password."];
+    } else {
+        NSNumber *uid = [[Response valueForKey:LOGIN_RESPONSE_DATA] valueForKey:LOGIN_RESPONSE_DATA_UID];
+        NSString *uidStr = [NSString stringWithFormat:@"%@", uid];
+        [[[SecManager getInstance] secAttributes] setValue:uidStr forKey:SEC_ATTR_UID];
+        
+        
+        BaseHttpOperation* operation = [[BaseHttpOperation alloc] initWithObject:self target:@selector(didFinishLoadingTaskList:) type:FC_SERVICE_TYPE_GET_USER_TASK];
+        [operation start];
+        
+    }
+}
+
+- (void) didFinishLoadingTaskList:(NSArray*)Response
+{
+    [[BusyIndicator getInstance] dismissFromController:self];
+    FightClubRootViewController* fcRootViewController = [[FightClubRootViewController alloc] initWithNibName:nil bundle:nil];
+    [fcRootViewController setTasks:Response];
+    [self.navigationController pushViewController:fcRootViewController animated:YES];
 }
 
 #pragma UITableViewDelegate UITableDatasource functions

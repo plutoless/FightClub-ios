@@ -10,6 +10,11 @@
 
 @interface BusyIndicator : UIViewController
 
+@property (nonatomic, retain) UIActivityIndicatorView* indicator;
+
 + (BusyIndicator*) getInstance;
+
+- (void)showFromController:(UIViewController*)fromController;
+- (void)dismissFromController:(UIViewController*)fromController;
 
 @end
