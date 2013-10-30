@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 #import "LoginViewController.h"
+#import "FightClubRootViewController.h"
+#import "FcDatabase.h"
 
 @implementation AppDelegate
 
@@ -17,6 +19,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [FcDatabase initDatabase];
+    
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
@@ -30,6 +35,15 @@
     navigationController.navigationBarHidden = YES;
     self.window.rootViewController = navigationController;
     self.window.rootViewController.modalPresentationStyle = UIModalPresentationCurrentContext;
+    
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:SEC_DATA] != nil) {
+        // if login saved, start task view immediately
+        FightClubRootViewController* fcRootViewController = [[FightClubRootViewController alloc] initWithNibName:nil bundle:nil];
+        NSArray *tasks = [[FcDatabase getInstance] getTasks];
+        [fcRootViewController setTasks:tasks];
+        [navigationController pushViewController:fcRootViewController animated:NO];
+    }
+    
     return YES;
 }
 

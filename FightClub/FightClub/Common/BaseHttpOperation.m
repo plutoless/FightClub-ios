@@ -65,6 +65,13 @@
     if (requestURL != nil) {
         NSMutableURLRequest* request = [[NSMutableURLRequest alloc] initWithURL:requestURL cachePolicy:NSURLCacheStorageAllowedInMemoryOnly timeoutInterval:60];
         [request setHTTPMethod:@"GET"];
+        
+        NSArray* cookies = [[[SecManager getInstance] secAttributes] valueForKey:SEC_ATTR_SESSION];
+        
+        for (NSHTTPCookie* cookie in cookies) {
+            [request addValue:[cookie value] forHTTPHeaderField:@"Cookies"];
+        }
+        
         NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
         [connection start];
     }
@@ -88,7 +95,8 @@
     NSError * error;
     NSDictionary* jsonData = [NSJSONSerialization JSONObjectWithData:self.data options:kNilOptions error:&error];
     
-    
+//    NSString* dataStr = [[NSString alloc] initWithData:self.data encoding:NSUTF8StringEncoding];
+//    NSLog(@"%@", dataStr);
     
     if (self.target != nil) {
         [self.object performSelector:self.target withObject:jsonData];

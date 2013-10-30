@@ -20,6 +20,8 @@
 #define SEC_ATTR_TEMP_USER                  @"tuser"
 #define SEC_ATTR_TEMP_PASS                  @"tpwd"
 #define SEC_ATTR_UID                        @"uid"
+#define SEC_ATTR_SESSION                    @"session"
+#define SEC_DATA                            @"sData"
 
 #define SERVICE_MACRO_LOGIN                 @"loginService"
 
@@ -28,5 +30,7 @@
 #define LOGIN_RESPONSE_DATA_UID             @"uid"
 
 #define TASK_ATTR_CONTENT                   @"content"
+
+#define DB_FILE_NAME                        @"fightclub.sqlite"
 
 #endif

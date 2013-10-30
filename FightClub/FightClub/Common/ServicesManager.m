@@ -39,17 +39,12 @@ static ServicesManager* serviceManager;
 + (NSString*)getServiceURLById:(FcServiceType)type
 {
     NSString* url = nil;
-    NSString* uid = nil;
     switch (type) {
         case FC_SERVICE_TYPE_LOGIN:
             
             break;
         case FC_SERVICE_TYPE_GET_USER_TASK:
-            uid = [[[SecManager getInstance] secAttributes] valueForKey:SEC_ATTR_UID];
-            if (uid == nil) {
-                uid = @"-1";
-            }
-            url = [NSString stringWithFormat:@"%@common/webactions.php?uid=%@&webaction=%d", FC_SERVER_BASE_URL, uid, 1];
+            url = [NSString stringWithFormat:@"%@common/webactions.php?webaction=%d", FC_SERVER_BASE_URL, 1];
             break;
         default:
             break;

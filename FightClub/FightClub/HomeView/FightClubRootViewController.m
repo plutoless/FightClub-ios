@@ -9,6 +9,8 @@
 #import "FightClubRootViewController.h"
 #import "FcConstant.h"
 
+#define TASK_LIST_TABLE_PADDING_X 10
+
 @interface FightClubRootViewController ()
 
 @end
@@ -20,8 +22,9 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        CGRect screenFrame = [[UIScreen mainScreen] bounds];
         // Custom initialization
-        self.homeView = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+        self.homeView = [[UIView alloc] initWithFrame:CGRectMake(screenFrame.origin.x + TASK_LIST_TABLE_PADDING_X, 0, screenFrame.size.width - TASK_LIST_TABLE_PADDING_X * 2, screenFrame.size.height)];
         self.tasks = [[NSArray alloc] init];
         UIImageView *bgView = [[UIImageView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
         UIImage *bgImg = [UIImage imageNamed:@"login.jpg"];
@@ -34,6 +37,7 @@
         self.tblView = [[UITableView alloc] initWithFrame:self.homeView.frame style:UITableViewStyleGrouped];
         self.tblView.dataSource = self;
         self.tblView.delegate = self;
+        [self.tblView setContentInset:UIEdgeInsetsMake(40, 0, 0, 0)];
         [self.tblView setBackgroundColor:[UIColor clearColor]];
         
         
@@ -47,6 +51,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
 - (void)viewDidLoad
@@ -92,6 +97,23 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    CGRect original = cell.frame;
+    [cell setFrame:CGRectMake(original.origin.x + 50, original.origin.y, original.size.width, original.size.height)];
+    [cell setAlpha:0];
+    
+    
+    [UIView animateWithDuration:0.6
+                          delay:indexPath.row*0.1
+                        options:UIViewAnimationOptionTransitionNone
+                     animations:^{
+                         [cell setFrame:original];
+                         [cell setAlpha:1];
+                     }
+                     completion:nil];
 }
 
 

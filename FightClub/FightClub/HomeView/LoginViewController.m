@@ -14,6 +14,7 @@
 #import "LoginOperation.h"
 #import "BaseHttpOperation.h"
 #import "FightClubRootViewController.h"
+#import "FcDatabase.h"
 
 @interface LoginViewController ()
 
@@ -52,6 +53,8 @@
         
         UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
         [self.mainView addGestureRecognizer:tap];
+        
+//        [self performSelector:@selector(loginFromLaunch) withObject:self afterDelay:0.4];
     }
     return self;
 }
@@ -60,6 +63,19 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -160,6 +176,10 @@
     [[BusyIndicator getInstance] dismissFromController:self];
     FightClubRootViewController* fcRootViewController = [[FightClubRootViewController alloc] initWithNibName:nil bundle:nil];
     [fcRootViewController setTasks:Response];
+    [[FcDatabase getInstance] insertTasks:Response];
+    NSData* data = [NSKeyedArchiver archivedDataWithRootObject:[[SecManager getInstance] secAttributes]] ;
+    [[NSUserDefaults standardUserDefaults] setObject:data forKey:SEC_DATA];
+    [[NSUserDefaults standardUserDefaults] synchronize];
     [self.navigationController pushViewController:fcRootViewController animated:YES];
 }
 

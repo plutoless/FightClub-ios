@@ -18,6 +18,8 @@
 		0DE2F1CB181D65DF006EDEA4 /* BusyIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DE2F1CA181D65DF006EDEA4 /* BusyIndicator.m */; };
 		0DE2F1CE181EB532006EDEA4 /* BaseHttpOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DE2F1CD181EB532006EDEA4 /* BaseHttpOperation.m */; };
 		0DE2F1D1181EB571006EDEA4 /* OperationParams.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DE2F1D0181EB571006EDEA4 /* OperationParams.m */; };
+		0DE2F1E918213B90006EDEA4 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DE2F1E818213B90006EDEA4 /* libsqlite3.dylib */; };
+		0DE2F1EC18213C84006EDEA4 /* FcDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DE2F1EB18213C84006EDEA4 /* FcDatabase.m */; };
 		0DF39B76181968B200F6B500 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DF39B75181968B200F6B500 /* Foundation.framework */; };
 		0DF39B78181968B200F6B500 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DF39B77181968B200F6B500 /* CoreGraphics.framework */; };
 		0DF39B7A181968B200F6B500 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DF39B79181968B200F6B500 /* UIKit.framework */; };
@@ -67,6 +69,9 @@
 		0DE2F1CD181EB532006EDEA4 /* BaseHttpOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BaseHttpOperation.m; path = Common/BaseHttpOperation.m; sourceTree = "<group>"; };
 		0DE2F1CF181EB571006EDEA4 /* OperationParams.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OperationParams.h; path = Common/OperationParams.h; sourceTree = "<group>"; };
 		0DE2F1D0181EB571006EDEA4 /* OperationParams.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OperationParams.m; path = Common/OperationParams.m; sourceTree = "<group>"; };
+		0DE2F1E818213B90006EDEA4 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		0DE2F1EA18213C84006EDEA4 /* FcDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FcDatabase.h; path = Common/FcDatabase.h; sourceTree = "<group>"; };
+		0DE2F1EB18213C84006EDEA4 /* FcDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FcDatabase.m; path = Common/FcDatabase.m; sourceTree = "<group>"; };
 		0DF39B72181968B200F6B500 /* FightClub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FightClub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0DF39B75181968B200F6B500 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		0DF39B77181968B200F6B500 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -92,6 +97,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0DE2F1E918213B90006EDEA4 /* libsqlite3.dylib in Frameworks */,
 				0DF39B78181968B200F6B500 /* CoreGraphics.framework in Frameworks */,
 				0DF39B7C181968B200F6B500 /* CoreData.framework in Frameworks */,
 				0DF39B7A181968B200F6B500 /* UIKit.framework in Frameworks */,
@@ -148,6 +154,8 @@
 				0DE2F1CD181EB532006EDEA4 /* BaseHttpOperation.m */,
 				0DE2F1CF181EB571006EDEA4 /* OperationParams.h */,
 				0DE2F1D0181EB571006EDEA4 /* OperationParams.m */,
+				0DE2F1EA18213C84006EDEA4 /* FcDatabase.h */,
+				0DE2F1EB18213C84006EDEA4 /* FcDatabase.m */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -175,6 +183,7 @@
 		0DF39B74181968B200F6B500 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0DE2F1E818213B90006EDEA4 /* libsqlite3.dylib */,
 				0DF39B75181968B200F6B500 /* Foundation.framework */,
 				0DF39B77181968B200F6B500 /* CoreGraphics.framework */,
 				0DF39B79181968B200F6B500 /* UIKit.framework */,
@@ -348,6 +357,7 @@
 				0DE2F1CE181EB532006EDEA4 /* BaseHttpOperation.m in Sources */,
 				0D3EF2A2181CB67B00B035DB /* ServicesManager.m in Sources */,
 				0D3EF29F181CAD8B00B035DB /* FcAlert.m in Sources */,
+				0DE2F1EC18213C84006EDEA4 /* FcDatabase.m in Sources */,
 				0D3EF29C181C1A0000B035DB /* SecManager.m in Sources */,
 				0D3EF28E181BB06600B035DB /* LoginViewController.m in Sources */,
 			);

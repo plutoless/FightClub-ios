@@ -42,7 +42,7 @@
     NSURL* requestURL = [NSURL URLWithString:urlString];
     
     if (requestURL != nil) {
-        NSMutableURLRequest* request = [[NSMutableURLRequest alloc] initWithURL:requestURL cachePolicy:NSURLCacheStorageAllowedInMemoryOnly timeoutInterval:60];
+        NSMutableURLRequest* request = [[NSMutableURLRequest alloc] initWithURL:requestURL cachePolicy:NSURLCacheStorageAllowedInMemoryOnly timeoutInterval:20];
         [request setHTTPMethod:@"GET"];
         NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
         [connection start];
@@ -51,6 +51,19 @@
 
 
 #pragma NSURLConnectionDelegate
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
+{
+    NSDictionary* headers = [((NSHTTPURLResponse*)response) allHeaderFields];
+    NSArray *cookies = [NSHTTPCookie cookiesWithResponseHeaderFields:headers forURL:[response URL]];
+    if ([cookies count] > 0) {
+        [[[SecManager getInstance] secAttributes] setValue:cookies forKey:SEC_ATTR_SESSION];
+        NSData* cookieData = [NSKeyedArchiver archivedDataWithRootObject:cookies];
+        [[NSUserDefaults standardUserDefaults] setObject:cookieData forKey:SEC_ATTR_SESSION];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+}
+
+
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 {
     [self.data appendData:data];
