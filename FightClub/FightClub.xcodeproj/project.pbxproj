@@ -20,6 +20,8 @@
 		0DE2F1D1181EB571006EDEA4 /* OperationParams.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DE2F1D0181EB571006EDEA4 /* OperationParams.m */; };
 		0DE2F1E918213B90006EDEA4 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DE2F1E818213B90006EDEA4 /* libsqlite3.dylib */; };
 		0DE2F1EC18213C84006EDEA4 /* FcDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DE2F1EB18213C84006EDEA4 /* FcDatabase.m */; };
+		0DE2F1EF182265CF006EDEA4 /* ConnectionUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DE2F1EE182265CF006EDEA4 /* ConnectionUtils.m */; };
+		0DE2F1F218229DEC006EDEA4 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DE2F1F118229DEC006EDEA4 /* Utils.m */; };
 		0DF39B76181968B200F6B500 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DF39B75181968B200F6B500 /* Foundation.framework */; };
 		0DF39B78181968B200F6B500 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DF39B77181968B200F6B500 /* CoreGraphics.framework */; };
 		0DF39B7A181968B200F6B500 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DF39B79181968B200F6B500 /* UIKit.framework */; };
@@ -72,6 +74,10 @@
 		0DE2F1E818213B90006EDEA4 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		0DE2F1EA18213C84006EDEA4 /* FcDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FcDatabase.h; path = Common/FcDatabase.h; sourceTree = "<group>"; };
 		0DE2F1EB18213C84006EDEA4 /* FcDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FcDatabase.m; path = Common/FcDatabase.m; sourceTree = "<group>"; };
+		0DE2F1ED182265CF006EDEA4 /* ConnectionUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConnectionUtils.h; path = Common/ConnectionUtils.h; sourceTree = "<group>"; };
+		0DE2F1EE182265CF006EDEA4 /* ConnectionUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ConnectionUtils.m; path = Common/ConnectionUtils.m; sourceTree = "<group>"; };
+		0DE2F1F018229DEC006EDEA4 /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Utils.h; path = Common/Utils.h; sourceTree = "<group>"; };
+		0DE2F1F118229DEC006EDEA4 /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Utils.m; path = Common/Utils.m; sourceTree = "<group>"; };
 		0DF39B72181968B200F6B500 /* FightClub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FightClub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0DF39B75181968B200F6B500 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		0DF39B77181968B200F6B500 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -156,6 +162,10 @@
 				0DE2F1D0181EB571006EDEA4 /* OperationParams.m */,
 				0DE2F1EA18213C84006EDEA4 /* FcDatabase.h */,
 				0DE2F1EB18213C84006EDEA4 /* FcDatabase.m */,
+				0DE2F1ED182265CF006EDEA4 /* ConnectionUtils.h */,
+				0DE2F1EE182265CF006EDEA4 /* ConnectionUtils.m */,
+				0DE2F1F018229DEC006EDEA4 /* Utils.h */,
+				0DE2F1F118229DEC006EDEA4 /* Utils.m */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -348,7 +358,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				0DE2F1CB181D65DF006EDEA4 /* BusyIndicator.m in Sources */,
+				0DE2F1EF182265CF006EDEA4 /* ConnectionUtils.m in Sources */,
 				0DE2F1D1181EB571006EDEA4 /* OperationParams.m in Sources */,
+				0DE2F1F218229DEC006EDEA4 /* Utils.m in Sources */,
 				0DF39B88181968B200F6B500 /* AppDelegate.m in Sources */,
 				0D3EF299181C182F00B035DB /* LoginOperation.m in Sources */,
 				0DF39B8B181968B200F6B500 /* FightClub.xcdatamodeld in Sources */,

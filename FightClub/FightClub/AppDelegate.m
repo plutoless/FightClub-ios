@@ -29,19 +29,20 @@
     
     LoginViewController *loginViewController = [[LoginViewController alloc] initWithNibName:nil bundle:nil];
     
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:loginViewController];
+    self.navigationController = [[UINavigationController alloc] initWithRootViewController:loginViewController];
     
     //we initially hide the navigation bar as we don't need this in login page
-    navigationController.navigationBarHidden = YES;
-    self.window.rootViewController = navigationController;
+    self.navigationController.navigationBarHidden = YES;
+    self.window.rootViewController = self.navigationController;
     self.window.rootViewController.modalPresentationStyle = UIModalPresentationCurrentContext;
+    
+    self.homeViewController = [[FightClubRootViewController alloc] initWithNibName:nil bundle:nil];
     
     if ([[NSUserDefaults standardUserDefaults] objectForKey:SEC_DATA] != nil) {
         // if login saved, start task view immediately
-        FightClubRootViewController* fcRootViewController = [[FightClubRootViewController alloc] initWithNibName:nil bundle:nil];
         NSArray *tasks = [[FcDatabase getInstance] getTasks];
-        [fcRootViewController setTasks:tasks];
-        [navigationController pushViewController:fcRootViewController animated:NO];
+        [self.homeViewController setTasks:tasks];
+        [self.navigationController pushViewController:self.homeViewController animated:NO];
     }
     
     return YES;

@@ -8,6 +8,7 @@
 
 #import "FightClubRootViewController.h"
 #import "FcConstant.h"
+#import "LoginViewController.h"
 
 #define TASK_LIST_TABLE_PADDING_X 10
 
@@ -44,6 +45,8 @@
         [self.homeView addSubview:self.tblView];
         
         self.view = self.homeView;
+        
+        
     }
     return self;
 }
@@ -71,6 +74,7 @@
 {
     return UIStatusBarStyleLightContent;
 }
+
 
 
 #pragma UITableViewDelegate UITableDatasource functions

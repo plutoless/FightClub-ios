@@ -14,7 +14,9 @@
 #import "LoginOperation.h"
 #import "BaseHttpOperation.h"
 #import "FightClubRootViewController.h"
+#import "Utils.h"
 #import "FcDatabase.h"
+#import "AppDelegate.h"
 
 @interface LoginViewController ()
 
@@ -173,14 +175,15 @@
 
 - (void) didFinishLoadingTaskList:(NSArray*)Response
 {
+    FightClubRootViewController* homeview = [[Utils getFcAppDelegate] homeViewController];
+    
     [[BusyIndicator getInstance] dismissFromController:self];
-    FightClubRootViewController* fcRootViewController = [[FightClubRootViewController alloc] initWithNibName:nil bundle:nil];
-    [fcRootViewController setTasks:Response];
+    [homeview setTasks:Response];
     [[FcDatabase getInstance] insertTasks:Response];
     NSData* data = [NSKeyedArchiver archivedDataWithRootObject:[[SecManager getInstance] secAttributes]] ;
     [[NSUserDefaults standardUserDefaults] setObject:data forKey:SEC_DATA];
     [[NSUserDefaults standardUserDefaults] synchronize];
-    [self.navigationController pushViewController:fcRootViewController animated:YES];
+    [self.navigationController pushViewController:homeview animated:YES];
 }
 
 #pragma UITableViewDelegate UITableDatasource functions

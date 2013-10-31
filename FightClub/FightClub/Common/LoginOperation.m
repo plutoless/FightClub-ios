@@ -57,9 +57,9 @@
     NSArray *cookies = [NSHTTPCookie cookiesWithResponseHeaderFields:headers forURL:[response URL]];
     if ([cookies count] > 0) {
         [[[SecManager getInstance] secAttributes] setValue:cookies forKey:SEC_ATTR_SESSION];
-        NSData* cookieData = [NSKeyedArchiver archivedDataWithRootObject:cookies];
-        [[NSUserDefaults standardUserDefaults] setObject:cookieData forKey:SEC_ATTR_SESSION];
-        [[NSUserDefaults standardUserDefaults] synchronize];
+//        NSData* cookieData = [NSKeyedArchiver archivedDataWithRootObject:cookies];
+//        [[NSUserDefaults standardUserDefaults] setObject:cookieData forKey:SEC_ATTR_SESSION];
+//        [[NSUserDefaults standardUserDefaults] synchronize];
     }
 }
 
