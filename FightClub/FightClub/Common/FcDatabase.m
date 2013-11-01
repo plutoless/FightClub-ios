@@ -103,6 +103,10 @@ static FcDatabase* database = nil;
 //        [self deleteTasks];
 //    }
     
+    if ([arrayOfTasks count] == 0) {
+        return;
+    }
+    
     if (![self openDatabase]) {
         return;
     }
@@ -118,6 +122,10 @@ static FcDatabase* database = nil;
 
 - (void)deleteTasks:(NSArray *)arrayOfTasks
 {
+    if ([arrayOfTasks count] == 0) {
+        return;
+    }
+    
     if (![self openDatabase]) {
         return;
     }

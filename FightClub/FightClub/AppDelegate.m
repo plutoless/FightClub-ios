@@ -50,7 +50,7 @@
         NSArray *tasks = [[FcDatabase getInstance] getTasks];
         [self.homeViewController setTasks:tasks];
         [self.navigationController pushViewController:self.homeViewController animated:NO];
-        [[ConnectionUtils getInstance] startBackgroundTasks];
+        [[ConnectionUtils getInstance] prepareBackgroundTasks];
     }
     
     return YES;

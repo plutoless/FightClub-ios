@@ -38,4 +38,7 @@
 
 #define DB_FILE_NAME                        @"fightclub.sqlite"
 
+#define PING_TIME_INTERVAL                  600
+#define AUTO_DATA_SYNC_TIME_INTERVAL        5
+
 #endif

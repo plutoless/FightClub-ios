@@ -8,10 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
-@interface ConnectionUtils : NSObject
+@interface ConnectionUtils : NSObject{
+    BOOL fetchLock;
+}
 
 + (ConnectionUtils*) getInstance;
 
-- (void) startBackgroundTasks;
+- (void) prepareBackgroundTasks;
 
 @end

@@ -186,11 +186,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FightClub/Common/ConnectionUtils.m"
-            timestampString = "404977029.767964"
+            timestampString = "405010732.845933"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "46"
-            endingLineNumber = "46"
+            startingLineNumber = "92"
+            endingLineNumber = "92"
             landmarkName = "-loginSuccessful:"
             landmarkType = "5">
          </BreakpointContent>
@@ -202,11 +202,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FightClub/Common/ConnectionUtils.m"
-            timestampString = "404997067.892836"
+            timestampString = "405010891.050281"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "98"
-            endingLineNumber = "98"
+            startingLineNumber = "188"
+            endingLineNumber = "188"
             landmarkName = "-didFinishLoadingTaskList:"
             landmarkType = "5">
          </BreakpointContent>
@@ -218,11 +218,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FightClub/Common/ConnectionUtils.m"
-            timestampString = "404997067.892836"
+            timestampString = "405010891.050281"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "77"
-            endingLineNumber = "77"
+            startingLineNumber = "167"
+            endingLineNumber = "167"
             landmarkName = "-didFinishLoadingTaskList:"
             landmarkType = "5">
          </BreakpointContent>
