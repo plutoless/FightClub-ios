@@ -19,7 +19,7 @@
 
 + (void) initDatabase;
 + (FcDatabase*) getInstance;
-
 - (void) insertTasks:(NSArray*)arrayOfTasks;
+- (void) deleteTasks:(NSArray*)arrayOfTasks;
 - (NSArray*) getTasks;
 @end

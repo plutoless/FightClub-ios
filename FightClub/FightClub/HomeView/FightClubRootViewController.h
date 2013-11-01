@@ -8,9 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FightClubRootViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
+@interface FightClubRootViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>{
+    BOOL isUpdating;
+}
 
 @property (nonatomic, retain) UIView* homeView;
 @property (nonatomic, retain) NSArray* tasks;
 @property (nonatomic, retain) UITableView* tblView;
+
+- (void) updateTasks:(NSArray*)tasks;
 @end

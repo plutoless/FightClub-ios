@@ -23,6 +23,8 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        isUpdating = NO;
+        
         CGRect screenFrame = [[UIScreen mainScreen] bounds];
         // Custom initialization
         self.homeView = [[UIView alloc] initWithFrame:CGRectMake(screenFrame.origin.x + TASK_LIST_TABLE_PADDING_X, 0, screenFrame.size.width - TASK_LIST_TABLE_PADDING_X * 2, screenFrame.size.height)];
@@ -75,7 +77,12 @@
     return UIStatusBarStyleLightContent;
 }
 
-
+- (void) updateTasks:(NSArray*)tasks
+{
+    isUpdating = YES;
+    [self setTasks:tasks];
+    [[self tblView] reloadData];
+}
 
 #pragma UITableViewDelegate UITableDatasource functions
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -105,19 +112,22 @@
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    CGRect original = cell.frame;
-    [cell setFrame:CGRectMake(original.origin.x + 50, original.origin.y, original.size.width, original.size.height)];
-    [cell setAlpha:0];
+    if (!isUpdating) {
+        CGRect original = cell.frame;
+        [cell setFrame:CGRectMake(original.origin.x + 50, original.origin.y, original.size.width, original.size.height)];
+        [cell setAlpha:0];
+        
+        
+        [UIView animateWithDuration:0.6
+                              delay:indexPath.row*0.1
+                            options:UIViewAnimationOptionTransitionNone
+                         animations:^{
+                             [cell setFrame:original];
+                             [cell setAlpha:1];
+                         }
+                         completion:nil];
+    }
     
-    
-    [UIView animateWithDuration:0.6
-                          delay:indexPath.row*0.1
-                        options:UIViewAnimationOptionTransitionNone
-                     animations:^{
-                         [cell setFrame:original];
-                         [cell setAlpha:1];
-                     }
-                     completion:nil];
 }
 
 

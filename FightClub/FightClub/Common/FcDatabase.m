@@ -39,7 +39,7 @@ static FcDatabase* database = nil;
         return;
     }
     
-    NSString *sqlCreateTable = @"CREATE TABLE IF NOT EXISTS Task (tid INTEGER PRIMARY KEY AUTOINCREMENT, content TEXT)";
+    NSString *sqlCreateTable = @"CREATE TABLE IF NOT EXISTS Task (tid INTEGER PRIMARY KEY, content TEXT, ts TIMESTAMP NOT NULL)";
     [self execQuery:sqlCreateTable];
     
     [self closeDatabase];
@@ -98,18 +98,35 @@ static FcDatabase* database = nil;
 
 - (void)insertTasks:(NSArray *)arrayOfTasks
 {
-    //remove all first when insert
-    [self deleteTasks];
+//    if (willDelete) {
+//        //remove all first when insert
+//        [self deleteTasks];
+//    }
     
     if (![self openDatabase]) {
         return;
     }
     
     for (NSDictionary* task in arrayOfTasks) {
-        NSString *sqlInsert = [NSString stringWithFormat:@"INSERT INTO Task (Content) VALUES ('%@')", [task valueForKey:TASK_ATTR_CONTENT]];
+        NSString *sqlInsert = [NSString stringWithFormat:@"INSERT INTO Task (tid, Content, ts) VALUES ('%@', '%@', '%@')", [task valueForKey:TASK_ATTR_TID], [task valueForKey:TASK_ATTR_CONTENT], [task valueForKey:TASK_ATTR_TS]];
         [self execQuery:sqlInsert];
     }
 
+    
+    [self closeDatabase];
+}
+
+- (void)deleteTasks:(NSArray *)arrayOfTasks
+{
+    if (![self openDatabase]) {
+        return;
+    }
+    
+    for (NSDictionary* task in arrayOfTasks) {
+        NSString *sqlInsert = [NSString stringWithFormat:@"DELETE FROM Task WHERE tid = '%@'", [task valueForKey:TASK_ATTR_TID]];
+        [self execQuery:sqlInsert];
+    }
+    
     
     [self closeDatabase];
 }
@@ -121,15 +138,18 @@ static FcDatabase* database = nil;
         return result;
     }
     
-    NSString *sqlQuery = @"SELECT Content FROM Task";
+    NSString *sqlQuery = @"SELECT tid, Content FROM Task ORDER BY ts DESC";
     sqlite3_stmt * statement;
     
     if (sqlite3_prepare_v2(db, [sqlQuery UTF8String], -1, &statement, nil) == SQLITE_OK) {
         while (sqlite3_step(statement) == SQLITE_ROW) {
-            char *content = (char*)sqlite3_column_text(statement, 0);
+            
+            NSString* tid = [NSString stringWithFormat:@"%d", sqlite3_column_int(statement, 0)];
+            char *content = (char*)sqlite3_column_text(statement, 1);
             NSString *nsContent = [[NSString alloc]initWithUTF8String:content];
             
             NSMutableDictionary * taskAttr = [[NSMutableDictionary alloc] init];
+            [taskAttr setObject:tid forKey:TASK_ATTR_TID];
             [taskAttr setObject:nsContent forKey:TASK_ATTR_CONTENT];
             [result addObject:taskAttr];
         }

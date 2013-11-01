@@ -10,6 +10,8 @@
 #import "LoginViewController.h"
 #import "FightClubRootViewController.h"
 #import "FcDatabase.h"
+#import "ConnectionUtils.h"
+#import "SecManager.h"
 
 @implementation AppDelegate
 
@@ -38,11 +40,17 @@
     
     self.homeViewController = [[FightClubRootViewController alloc] initWithNibName:nil bundle:nil];
     
-    if ([[NSUserDefaults standardUserDefaults] objectForKey:SEC_DATA] != nil) {
+    NSData* secData = [[NSUserDefaults standardUserDefaults] objectForKey:SEC_DATA];
+    
+    if (secData != nil) {
+        NSMutableDictionary* secManagerAttributes = [NSKeyedUnarchiver unarchiveObjectWithData:secData];
+        [[SecManager getInstance] setSecAttributes:secManagerAttributes];
+        
         // if login saved, start task view immediately
         NSArray *tasks = [[FcDatabase getInstance] getTasks];
         [self.homeViewController setTasks:tasks];
         [self.navigationController pushViewController:self.homeViewController animated:NO];
+        [[ConnectionUtils getInstance] startBackgroundTasks];
     }
     
     return YES;

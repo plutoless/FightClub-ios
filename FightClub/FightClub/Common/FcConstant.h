@@ -29,7 +29,12 @@
 #define LOGIN_RESPONSE_DATA                 @"data"
 #define LOGIN_RESPONSE_DATA_UID             @"uid"
 
+#define TASK_ATTR_TID                       @"tid"
 #define TASK_ATTR_CONTENT                   @"content"
+#define TASK_ATTR_TS                        @"tstamp"
+#define TASK_ATTR_EXISTS                    @"tidExists"
+#define TASK_ATTR_EXISTS_VAL_YES            @"yes"
+#define TASK_ATTR_EXISTS_VAL_NO             @"no"
 
 #define DB_FILE_NAME                        @"fightclub.sqlite"
 
