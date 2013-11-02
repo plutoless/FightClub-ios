@@ -29,19 +29,21 @@
         // Custom initialization
         self.homeView = [[UIView alloc] initWithFrame:CGRectMake(screenFrame.origin.x + TASK_LIST_TABLE_PADDING_X, 0, screenFrame.size.width - TASK_LIST_TABLE_PADDING_X * 2, screenFrame.size.height)];
         self.tasks = [[NSArray alloc] init];
-        UIImageView *bgView = [[UIImageView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-        UIImage *bgImg = [UIImage imageNamed:@"login.jpg"];
-        [bgView setImage:bgImg];
-        [bgView setContentMode:UIViewContentModeRight];
-        [bgView setContentScaleFactor:1.8];
+//        UIImageView *bgView = [[UIImageView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+//        UIImage *bgImg = [UIImage imageNamed:@"login.jpg"];
+//        [bgView setImage:bgImg];
+//        [bgView setContentMode:UIViewContentModeRight];
+//        [bgView setContentScaleFactor:1.8];
         
-        [self.homeView addSubview:bgView];
+//        [self.homeView addSubview:bgView];
+        [self.homeView setBackgroundColor:[UIColor colorWithRed:0.153 green:0.682 blue:0.376 alpha:1]];
         
         self.tblView = [[UITableView alloc] initWithFrame:self.homeView.frame style:UITableViewStyleGrouped];
         self.tblView.dataSource = self;
         self.tblView.delegate = self;
         [self.tblView setContentInset:UIEdgeInsetsMake(40, 0, 0, 0)];
         [self.tblView setBackgroundColor:[UIColor clearColor]];
+        self.tblView.separatorStyle = UITableViewCellSeparatorStyleNone;
         
         
         [self.homeView addSubview:self.tblView];
@@ -101,8 +103,10 @@
 {
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
 
+    [cell setBackgroundColor:[UIColor clearColor]];
     cell.textLabel.text = [[self.tasks objectAtIndex:indexPath.row] valueForKey:TASK_ATTR_CONTENT];
-    
+    cell.textLabel.textColor = [UIColor colorWithWhite:1 alpha:1];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 

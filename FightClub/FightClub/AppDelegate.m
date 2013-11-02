@@ -23,7 +23,6 @@
 {
     [FcDatabase initDatabase];
     
-    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
@@ -31,30 +30,44 @@
     
     LoginViewController *loginViewController = [[LoginViewController alloc] initWithNibName:nil bundle:nil];
     
+    
     self.navigationController = [[UINavigationController alloc] initWithRootViewController:loginViewController];
+    [self applyNavigationBarStyles];
     
     //we initially hide the navigation bar as we don't need this in login page
-    self.navigationController.navigationBarHidden = YES;
+//    [self.navigationController.navigationBar setTranslucent:NO];
     self.window.rootViewController = self.navigationController;
     self.window.rootViewController.modalPresentationStyle = UIModalPresentationCurrentContext;
     
     self.homeViewController = [[FightClubRootViewController alloc] initWithNibName:nil bundle:nil];
     
-    NSData* secData = [[NSUserDefaults standardUserDefaults] objectForKey:SEC_DATA];
-    
-    if (secData != nil) {
-        NSMutableDictionary* secManagerAttributes = [NSKeyedUnarchiver unarchiveObjectWithData:secData];
-        [[SecManager getInstance] setSecAttributes:secManagerAttributes];
-        
-        // if login saved, start task view immediately
-        NSArray *tasks = [[FcDatabase getInstance] getTasks];
-        [self.homeViewController setTasks:tasks];
-        [self.navigationController pushViewController:self.homeViewController animated:NO];
-        [[ConnectionUtils getInstance] prepareBackgroundTasks];
-    }
+//    NSData* secData = [[NSUserDefaults standardUserDefaults] objectForKey:SEC_DATA];
+//    
+//    if (secData != nil) {
+//        NSMutableDictionary* secManagerAttributes = [NSKeyedUnarchiver unarchiveObjectWithData:secData];
+//        [[SecManager getInstance] setSecAttributes:secManagerAttributes];
+//        
+//        // if login saved, start task view immediately
+//        NSArray *tasks = [[FcDatabase getInstance] getTasks];
+//        [self.homeViewController setTasks:tasks];
+//        [self.navigationController pushViewController:self.homeViewController animated:NO];
+//        [[ConnectionUtils getInstance] prepareBackgroundTasks];
+//    }
     
     return YES;
 }
+
+- (void)applyNavigationBarStyles
+{
+    [[self.navigationController navigationBar] setBackgroundImage:[UIImage imageNamed:@"toolbar_bg.png"] forBarMetrics:UIBarMetricsDefault];
+    [[self.navigationController navigationBar] setBarStyle:UIBarStyleBlackTranslucent];
+    self.fcTitleLabelView = [[UILabel alloc] init];
+    [self.fcTitleLabelView setFont:[UIFont fontWithName:@"mathilde" size:36]];
+    [self.fcTitleLabelView setText:@"Fight!Club"];
+    [self.fcTitleLabelView setTextColor: FC_COLOR_WHITE];
+    [self.fcTitleLabelView sizeToFit];
+}
+
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {

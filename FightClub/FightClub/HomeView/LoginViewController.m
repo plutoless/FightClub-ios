@@ -31,25 +31,17 @@
         // Custom initialization
         CGRect frame = [[UIScreen mainScreen] bounds];
         self.mainView = [[UIView alloc] initWithFrame:frame];
-        [self.mainView setBackgroundColor:[UIColor colorWithRed:0.35 green:0.70 blue:0.87 alpha:1]];
-//        UIImageView *bgView = [[UIImageView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+        [self.mainView setBackgroundColor:FC_THEME_BG_COLOR];
+//        self.backgroundView = [[UIImageView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 //        UIImage *bgImg = [UIImage imageNamed:@"login.jpg"];
-//        [bgView setImage:bgImg];
-//        [bgView setContentMode:UIViewContentModeRight];
-//        [bgView setContentScaleFactor:1.8];
-//        [self.mainView addSubview:bgView];
+//        [self.backgroundView setImage:bgImg];
+//        [self.backgroundView setContentMode:UIViewContentModeRight];
+//        [self.backgroundView setContentScaleFactor:1.8];
+//        [self.mainView addSubview:self.backgroundView];
         
         [self createContent];
-        
-        UITableView* form = [[UITableView alloc] initWithFrame:CGRectMake(0, frame.size.height/2 - 50, frame.size.width, LOGIN_FORM_TABLE_HEIGHT) style:UITableViewStyleGrouped];
-        form.delegate = self;
-        form.dataSource = self;
-        form.scrollEnabled = NO;
-        
-        [form setBackgroundColor:[UIColor clearColor]];
-        
-        [self.mainView addSubview:form];
-        
+        [self createLoginForm];
         self.view = self.mainView;
         
         
@@ -76,7 +68,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self.navigationController setNavigationBarHidden:YES animated:YES];
+    [self.navigationItem setTitleView:[[Utils getFcAppDelegate] fcTitleLabelView]];
     
 }
 
@@ -91,35 +83,62 @@
     return UIStatusBarStyleLightContent;
 }
 
+- (void) createLoginForm
+{
+    CGRect frame = [[UIScreen mainScreen] bounds];
+    UITableView* form = [[UITableView alloc] initWithFrame:CGRectMake(LOGIN_FORM_MARGIN, LOGIN_FORM_TOP_OFFSET, frame.size.width - LOGIN_FORM_MARGIN * 2, LOGIN_FORM_CELL_HEIGHT*2) style:UITableViewStylePlain];
+    form.delegate = self;
+    form.dataSource = self;
+    
+    [form setScrollEnabled:NO];
+    [form setBounces:NO];
+    
+    form.separatorStyle = UITableViewCellSeparatorStyleNone;
+    form.sectionFooterHeight = 0.0;
+    form.sectionHeaderHeight = 0.0;
+    [form setBackgroundColor:[UIColor clearColor]];
+    form.layer.cornerRadius = 5;
+    
+    [self.mainView addSubview:form];
+}
+
 - (void) createContent
 {
     CGRect frame = self.mainView.frame;
-    self.avatar = [[UIImageView alloc] initWithFrame:CGRectMake(frame.size.width/2-LOGIN_FORM_AVATAR_HEIGHT/2, frame.size.height/2 -200, LOGIN_FORM_AVATAR_HEIGHT, LOGIN_FORM_AVATAR_HEIGHT)];
-    UIImage *avatarImg = [UIImage imageNamed:@"21.png"];
-    [self.avatar setImage:avatarImg];
-    [self.avatar.layer setShadowOffset:CGSizeMake(0, 0)];
-    [self.avatar.layer setShadowOpacity:0.5];
-    [self.avatar.layer setShadowColor:[UIColor colorWithWhite:0.4 alpha:1].CGColor];
+//    self.avatar = [[UIImageView alloc] initWithFrame:CGRectMake(frame.size.width/2-LOGIN_FORM_AVATAR_HEIGHT/2, frame.size.height/2 -200, LOGIN_FORM_AVATAR_HEIGHT, LOGIN_FORM_AVATAR_HEIGHT)];
+//    UIImage *avatarImg = [UIImage imageNamed:@"21.png"];
+//    [self.avatar setImage:avatarImg];
+//    [self.avatar.layer setShadowOffset:CGSizeMake(0, 0)];
+//    [self.avatar.layer setShadowOpacity:0.5];
+//    [self.avatar.layer setShadowColor:[UIColor colorWithWhite:0.4 alpha:1].CGColor];
+//    
+//    [self.mainView addSubview:self.avatar];
     
-    [self.mainView addSubview:self.avatar];
     
-    self.username = [[UITextField alloc] initWithFrame:CGRectMake(LOGIN_FORM_CELL_FIELD_PADDING, 0, frame.size.width - LOGIN_FORM_CELL_FIELD_PADDING * 2, LOGIN_FORM_CELL_HEIGHT)];
+    self.username = [[UITextField alloc] initWithFrame:CGRectMake(LOGIN_FORM_CELL_FIELD_PADDING, 0, frame.size.width - LOGIN_FORM_MARGIN * 2 - LOGIN_FORM_CELL_FIELD_PADDING * 2, LOGIN_FORM_CELL_HEIGHT)];
     [self.username setPlaceholder:@"Username"];
     self.username.delegate = self;
     
-    self.password = [[UITextField alloc] initWithFrame:CGRectMake(LOGIN_FORM_CELL_FIELD_PADDING, 0, frame.size.width - LOGIN_FORM_CELL_FIELD_PADDING *2, LOGIN_FORM_CELL_HEIGHT)];
+    self.password = [[UITextField alloc] initWithFrame:CGRectMake(LOGIN_FORM_CELL_FIELD_PADDING, 0, frame.size.width - LOGIN_FORM_MARGIN * 2 - LOGIN_FORM_CELL_FIELD_PADDING * 2, LOGIN_FORM_CELL_HEIGHT)];
     [self.password setPlaceholder:@"Password"];
     self.password.secureTextEntry = YES;
     self.password.delegate = self;
     
     self.loginBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.loginBtn.frame = CGRectMake(0, 0, frame.size.width, LOGIN_FORM_CELL_HEIGHT);
-    [self.loginBtn setBackgroundColor:[UIColor colorWithRed:0.8 green:0.4 blue:0.4 alpha:1]];
-    [self.loginBtn setTitle:@"Login" forState:UIControlStateNormal];
+    self.loginBtn.frame = CGRectMake(LOGIN_FORM_MARGIN, LOGIN_FORM_TOP_OFFSET + LOGIN_FORM_CELL_HEIGHT*2 + 50, frame.size.width - LOGIN_FORM_MARGIN * 2, LOGIN_FORM_CELL_HEIGHT);
+    [self.loginBtn setBackgroundColor:FC_THEME_NAV_BAR_BG_COLOR];
+    [self.loginBtn setTitle:@"LOG IN" forState:UIControlStateNormal];
+    [[self.loginBtn titleLabel] setFont:[UIFont systemFontOfSize:12]];
     [self.loginBtn setTitleColor:[UIColor colorWithWhite:1 alpha:1] forState:UIControlStateNormal];
     self.loginBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
     [self.loginBtn setEnabled:YES];
+    self.loginBtn.layer.cornerRadius = 5;
     [self.loginBtn addTarget:self action:@selector(login) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.mainView addSubview:self.loginBtn];
+    
+    self.separator = [[UIView alloc] initWithFrame:CGRectMake(0, LOGIN_FORM_CELL_HEIGHT-1, frame.size.width, 1)];
+    [self.separator setBackgroundColor:FC_THEME_DARK_TEXT_COLOR];
 }
 
 - (void) dismissKeyboard
@@ -189,19 +208,7 @@
 #pragma UITableViewDelegate UITableDatasource functions
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSInteger num = 0;
-    switch (section) {
-        case kLoginFormTableInfoSection:
-            num = kLoginFormTableInfoSectionTotalRows;
-            break;
-        case kLoginFormLoginBtnSection:
-            num = kLoginFormTableLoginBtnSectionTotalRows;
-            break;
-        default:
-            break;
-    }
-    
-    return num;
+    return 1;
 }
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
@@ -214,24 +221,20 @@
     return LOGIN_FORM_CELL_HEIGHT;
 }
 
-
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    if (indexPath.section == kLoginFormTableInfoSection) {
-        switch (indexPath.row) {
-            case kLoginFormUsernameField:
-                [cell addSubview:self.username];
-                break;
-            case kLoginFormPasswordField:
-                [cell addSubview:self.password];
-                break;
-            default:
-                break;
-        }
-    } else if (indexPath.section == kLoginFormLoginBtnSection){
-        [cell addSubview:self.loginBtn];
+    switch (indexPath.section) {
+        case kLoginFormTableUsernameSection:
+            [cell addSubview:self.username];
+            [cell addSubview:self.separator];
+            break;
+        case kLoginFormTablePasswordSection:
+            [cell addSubview:self.password];
+            break;
+        default:
+            break;
     }
     
     return cell;

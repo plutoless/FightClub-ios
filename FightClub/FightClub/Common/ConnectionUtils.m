@@ -71,7 +71,7 @@ static ConnectionUtils* connectionUtils;
     //we need to do following bg tasks
     //1. Start a Login Timer to keep session
     //2. Start an refresh timer to keep updating data
-    [[[Utils getFcAppDelegate] homeViewController].navigationItem setTitle:@"Connecting..."];
+//    [[[Utils getFcAppDelegate] homeViewController].navigationItem setTitle:@"Connecting..."];
     LoginOperation* loginOper = [[LoginOperation alloc] initWithObject:self target:@selector(loginSuccessful:)];
     [loginOper start];
 }
@@ -95,7 +95,7 @@ static ConnectionUtils* connectionUtils;
         [[FcAlert getInstance] showInfoAlertwithTitle:@"Error" message:@"Login Failed. Please check your username and password."];
         [[[Utils getFcAppDelegate] navigationController] popToRootViewControllerAnimated:YES];
     } else {
-        [[[Utils getFcAppDelegate] homeViewController].navigationItem setTitle:@"Loading..."];
+//        [[[Utils getFcAppDelegate] homeViewController].navigationItem setTitle:@"Loading..."];
         BaseHttpOperation* operation = [[BaseHttpOperation alloc] initWithObject:self target:@selector(didFinishLoadingTaskList:) type:FC_SERVICE_TYPE_GET_USER_TASK];
         [operation start];
     }
@@ -188,7 +188,7 @@ static ConnectionUtils* connectionUtils;
     [[FcDatabase getInstance] insertTasks:toBeInsert];
     [[FcDatabase getInstance] deleteTasks:toBeDelete];
     
-    [homeviewController.navigationItem setTitle:@"Fight Club"];
+//    [homeviewController.navigationItem setTitle:@"Fight Club"];
     
     [self scheduleBackgroundTasks];
 }

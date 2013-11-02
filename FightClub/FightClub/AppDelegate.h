@@ -18,6 +18,7 @@
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 @property (nonatomic, retain) UINavigationController* navigationController;
 @property (nonatomic, retain) FightClubRootViewController* homeViewController;
+@property (nonatomic, retain) UILabel* fcTitleLabelView;
 
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
