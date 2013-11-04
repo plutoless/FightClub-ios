@@ -12,6 +12,7 @@
 #import "FcDatabase.h"
 #import "ConnectionUtils.h"
 #import "SecManager.h"
+#import "Utils.h"
 
 @implementation AppDelegate
 
@@ -41,18 +42,19 @@
     
     self.homeViewController = [[FightClubRootViewController alloc] initWithNibName:nil bundle:nil];
     
-//    NSData* secData = [[NSUserDefaults standardUserDefaults] objectForKey:SEC_DATA];
-//    
-//    if (secData != nil) {
-//        NSMutableDictionary* secManagerAttributes = [NSKeyedUnarchiver unarchiveObjectWithData:secData];
-//        [[SecManager getInstance] setSecAttributes:secManagerAttributes];
-//        
-//        // if login saved, start task view immediately
-//        NSArray *tasks = [[FcDatabase getInstance] getTasks];
-//        [self.homeViewController setTasks:tasks];
-//        [self.navigationController pushViewController:self.homeViewController animated:NO];
-//        [[ConnectionUtils getInstance] prepareBackgroundTasks];
-//    }
+    NSData* secData = [[NSUserDefaults standardUserDefaults] objectForKey:SEC_DATA];
+    
+    if (secData != nil) {
+        NSMutableDictionary* secManagerAttributes = [NSKeyedUnarchiver unarchiveObjectWithData:secData];
+        [[SecManager getInstance] setSecAttributes:secManagerAttributes];
+        
+        // if login saved, start task view immediately
+        NSArray *tasks = [[FcDatabase getInstance] getTasks];
+        NSArray *sortedTasks = [Utils sortTasks:tasks];
+        [self.homeViewController setTasks:sortedTasks];
+        [self.navigationController pushViewController:self.homeViewController animated:NO];
+        [[ConnectionUtils getInstance] prepareBackgroundTasks];
+    }
     
     return YES;
 }

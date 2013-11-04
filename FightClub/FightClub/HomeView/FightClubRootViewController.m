@@ -9,6 +9,7 @@
 #import "FightClubRootViewController.h"
 #import "FcConstant.h"
 #import "LoginViewController.h"
+#import "Utils.h"
 
 #define TASK_LIST_TABLE_PADDING_X 10
 
@@ -27,7 +28,7 @@
         
         CGRect screenFrame = [[UIScreen mainScreen] bounds];
         // Custom initialization
-        self.homeView = [[UIView alloc] initWithFrame:CGRectMake(screenFrame.origin.x + TASK_LIST_TABLE_PADDING_X, 0, screenFrame.size.width - TASK_LIST_TABLE_PADDING_X * 2, screenFrame.size.height)];
+        self.homeView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, screenFrame.size.width, screenFrame.size.height)];
         self.tasks = [[NSArray alloc] init];
 //        UIImageView *bgView = [[UIImageView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 //        UIImage *bgImg = [UIImage imageNamed:@"login.jpg"];
@@ -36,7 +37,7 @@
 //        [bgView setContentScaleFactor:1.8];
         
 //        [self.homeView addSubview:bgView];
-        [self.homeView setBackgroundColor:[UIColor colorWithRed:0.153 green:0.682 blue:0.376 alpha:1]];
+        [self.homeView setBackgroundColor:FC_COLOR_WHITE];
         
         self.tblView = [[UITableView alloc] initWithFrame:self.homeView.frame style:UITableViewStyleGrouped];
         self.tblView.dataSource = self;
@@ -89,25 +90,58 @@
 #pragma UITableViewDelegate UITableDatasource functions
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.tasks count];
+    return [[self.tasks objectAtIndex:section] count];
 }
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return [self.tasks count];
 }
 
 
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
-
+    UIFont* contentFont = [UIFont systemFontOfSize:14];
+    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];
+    CGRect frame = [[UIScreen mainScreen] bounds];
+    
     [cell setBackgroundColor:[UIColor clearColor]];
-    cell.textLabel.text = [[self.tasks objectAtIndex:indexPath.row] valueForKey:TASK_ATTR_CONTENT];
-    cell.textLabel.textColor = [UIColor colorWithWhite:1 alpha:1];
+    cell.detailTextLabel.text = [[[self.tasks objectAtIndex:indexPath.section] objectAtIndex:indexPath.row] valueForKey:TASK_ATTR_CONTENT];
+    cell.detailTextLabel.font = contentFont;
+    cell.detailTextLabel.textColor = FC_THEME_TASK_CONTENT_TEXT_COLOR;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    UIView* seperator = [[UIView alloc] initWithFrame:CGRectMake(0, TASK_LIST_CELL_HEIGHT-1, frame.size.width, 1)];
+    [seperator setBackgroundColor:FC_THEME_DARK_TEXT_COLOR];
+    [cell addSubview:seperator];
+    
     return cell;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UILabel* label = [[UILabel alloc] init];
+    UIFont* font = [UIFont boldSystemFontOfSize:18];
+    
+    [label setText:[[[self.tasks objectAtIndex:section] objectAtIndex:0] valueForKey:TASK_ATTR_CATEGORY]];
+    [label setFont:font];
+    [label setTextColor:FC_THEME_TASK_HEADER_TEXT_COLOR];
+    
+    [label sizeToFit];
+    
+    
+    return label;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return TASK_LIST_CELL_HEIGHT;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 20;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

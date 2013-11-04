@@ -117,19 +117,21 @@
     
     self.username = [[UITextField alloc] initWithFrame:CGRectMake(LOGIN_FORM_CELL_FIELD_PADDING, 0, frame.size.width - LOGIN_FORM_MARGIN * 2 - LOGIN_FORM_CELL_FIELD_PADDING * 2, LOGIN_FORM_CELL_HEIGHT)];
     [self.username setPlaceholder:@"Username"];
+    [self.username setFont:[UIFont systemFontOfSize:14]];
     self.username.delegate = self;
     
     self.password = [[UITextField alloc] initWithFrame:CGRectMake(LOGIN_FORM_CELL_FIELD_PADDING, 0, frame.size.width - LOGIN_FORM_MARGIN * 2 - LOGIN_FORM_CELL_FIELD_PADDING * 2, LOGIN_FORM_CELL_HEIGHT)];
     [self.password setPlaceholder:@"Password"];
+    [self.password setFont:[UIFont systemFontOfSize:14]];
     self.password.secureTextEntry = YES;
     self.password.delegate = self;
     
     self.loginBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.loginBtn.frame = CGRectMake(LOGIN_FORM_MARGIN, LOGIN_FORM_TOP_OFFSET + LOGIN_FORM_CELL_HEIGHT*2 + 50, frame.size.width - LOGIN_FORM_MARGIN * 2, LOGIN_FORM_CELL_HEIGHT);
+    self.loginBtn.frame = CGRectMake(LOGIN_FORM_MARGIN, LOGIN_FORM_TOP_OFFSET + LOGIN_FORM_CELL_HEIGHT*2 + 30, frame.size.width - LOGIN_FORM_MARGIN * 2, LOGIN_FORM_CELL_HEIGHT);
     [self.loginBtn setBackgroundColor:FC_THEME_NAV_BAR_BG_COLOR];
     [self.loginBtn setTitle:@"LOG IN" forState:UIControlStateNormal];
     [[self.loginBtn titleLabel] setFont:[UIFont systemFontOfSize:12]];
-    [self.loginBtn setTitleColor:[UIColor colorWithWhite:1 alpha:1] forState:UIControlStateNormal];
+    [self.loginBtn setTitleColor:FC_COLOR_WHITE forState:UIControlStateNormal];
     self.loginBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
     [self.loginBtn setEnabled:YES];
     self.loginBtn.layer.cornerRadius = 5;
@@ -197,8 +199,10 @@
     FightClubRootViewController* homeview = [[Utils getFcAppDelegate] homeViewController];
     
     [[BusyIndicator getInstance] dismissFromController:self];
-    [homeview setTasks:Response];
-    [[FcDatabase getInstance] insertTasks:Response];
+    
+    NSArray* sortedTasks = [Utils sortTasks:Response];
+    [homeview setTasks:sortedTasks];
+    [[FcDatabase getInstance] insertTasks:sortedTasks willDelete:YES];
     NSData* data = [NSKeyedArchiver archivedDataWithRootObject:[[SecManager getInstance] secAttributes]] ;
     [[NSUserDefaults standardUserDefaults] setObject:data forKey:SEC_DATA];
     [[NSUserDefaults standardUserDefaults] synchronize];

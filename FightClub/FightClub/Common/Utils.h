@@ -12,5 +12,6 @@
 @interface Utils : NSObject
 
 + (AppDelegate*)getFcAppDelegate;
-
++ (UIImage *)createImageByColor:(CGRect)frame color:(UIColor*)color cornerRadius:(CGFloat)corderRadius;
++ (NSArray*)sortTasks:(NSArray*)tasks;
 @end

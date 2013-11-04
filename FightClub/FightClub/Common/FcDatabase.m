@@ -39,7 +39,10 @@ static FcDatabase* database = nil;
         return;
     }
     
-    NSString *sqlCreateTable = @"CREATE TABLE IF NOT EXISTS Task (tid INTEGER PRIMARY KEY, content TEXT, ts TIMESTAMP NOT NULL)";
+    NSString *sqlCreateTable = @"CREATE TABLE IF NOT EXISTS Task (tid INTEGER PRIMARY KEY, content TEXT, ts TIMESTAMP NOT NULL, tgid INTEGER, FOREIGN KEY(tgid) REFERENCES Category(tgid))";
+    [self execQuery:sqlCreateTable];
+    
+    sqlCreateTable = @"CREATE TABLE IF NOT EXISTS Category (tgid INTEGER PRIMARY KEY, title TEXT, priority INTEGER NOT NULL)";
     [self execQuery:sqlCreateTable];
     
     [self closeDatabase];
@@ -96,12 +99,27 @@ static FcDatabase* database = nil;
     [self closeDatabase];
 }
 
-- (void)insertTasks:(NSArray *)arrayOfTasks
+- (void)cleanup
 {
-//    if (willDelete) {
-//        //remove all first when insert
-//        [self deleteTasks];
-//    }
+    if (![self openDatabase]) {
+        return;
+    }
+    
+    
+    NSString *sqlDelete = @"DELETE FROM Task";
+    [self execQuery:sqlDelete];
+    sqlDelete = @"DELETE FROM Category";
+    [self execQuery:sqlDelete];
+    
+    [self closeDatabase];
+}
+
+- (void)insertTasks:(NSArray *)arrayOfTasks willDelete:(BOOL)willDelete
+{
+    if (willDelete) {
+        //remove all first when insert
+        [self cleanup];
+    }
     
     if ([arrayOfTasks count] == 0) {
         return;
@@ -111,9 +129,16 @@ static FcDatabase* database = nil;
         return;
     }
     
-    for (NSDictionary* task in arrayOfTasks) {
-        NSString *sqlInsert = [NSString stringWithFormat:@"INSERT INTO Task (tid, Content, ts) VALUES ('%@', '%@', '%@')", [task valueForKey:TASK_ATTR_TID], [task valueForKey:TASK_ATTR_CONTENT], [task valueForKey:TASK_ATTR_TS]];
-        [self execQuery:sqlInsert];
+    for (NSArray* category in arrayOfTasks) {
+        NSDictionary* firstItem = [category objectAtIndex:0];
+        NSString *sqlInsertCategory = [NSString stringWithFormat:@"INSERT INTO Category (tgid, title, priority) VALUES ('%@', '%@', '%@')", [firstItem valueForKey:TASK_ATTR_TGID], [firstItem valueForKey:TASK_ATTR_CATEGORY], [firstItem valueForKey:TASK_ATTR_PRIORITY]];
+        [self execQuery:sqlInsertCategory];
+        
+        
+        for (NSDictionary* task in category) {
+            NSString *sqlInsertTask = [NSString stringWithFormat:@"INSERT INTO Task (tid, Content, ts, tgid) VALUES ('%@', '%@', '%@', %@)", [task valueForKey:TASK_ATTR_TID], [task valueForKey:TASK_ATTR_CONTENT], [task valueForKey:TASK_ATTR_TS], [task valueForKey:TASK_ATTR_TGID]];
+            [self execQuery:sqlInsertTask];
+        }
     }
 
     
@@ -146,7 +171,7 @@ static FcDatabase* database = nil;
         return result;
     }
     
-    NSString *sqlQuery = @"SELECT tid, Content FROM Task ORDER BY ts DESC";
+    NSString *sqlQuery = @"SELECT tid, Content, Category.tgid, title FROM Task JOIN Category ON Task.tgid = Category.tgid ORDER BY ts DESC";
     sqlite3_stmt * statement;
     
     if (sqlite3_prepare_v2(db, [sqlQuery UTF8String], -1, &statement, nil) == SQLITE_OK) {
@@ -156,9 +181,15 @@ static FcDatabase* database = nil;
             char *content = (char*)sqlite3_column_text(statement, 1);
             NSString *nsContent = [[NSString alloc]initWithUTF8String:content];
             
+            NSString* tgid = [NSString stringWithFormat:@"%d", sqlite3_column_int(statement, 2)];
+            NSString* nsTitle = [[NSString alloc]initWithUTF8String:(char*)sqlite3_column_text(statement, 3)];
+            
+            
             NSMutableDictionary * taskAttr = [[NSMutableDictionary alloc] init];
             [taskAttr setObject:tid forKey:TASK_ATTR_TID];
             [taskAttr setObject:nsContent forKey:TASK_ATTR_CONTENT];
+            [taskAttr setObject:tgid forKey:TASK_ATTR_TGID];
+            [taskAttr setObject:nsTitle forKey:TASK_ATTR_CATEGORY];
             [result addObject:taskAttr];
         }
     }
