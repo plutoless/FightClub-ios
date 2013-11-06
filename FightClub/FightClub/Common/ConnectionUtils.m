@@ -158,7 +158,7 @@ static ConnectionUtils* connectionUtils;
     
 //    [homeviewController.navigationItem setTitle:@"Fight Club"];
     
-    [self scheduleBackgroundTasks];
+//    [self scheduleBackgroundTasks];
 }
 
 @end

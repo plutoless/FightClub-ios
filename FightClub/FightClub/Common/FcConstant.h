@@ -19,13 +19,14 @@
 #define FC_COLOR_TRANSPARENT                [UIColor clearColor]
 
 #pragma login form constants..
-#define LOGIN_FORM_CELL_HEIGHT              50
+#define LOGIN_FORM_CELL_HEIGHT              60
 #define LOGIN_FORM_CELL_FIELD_PADDING       15
-#define LOGIN_FORM_TOP_OFFSET               100
+#define LOGIN_FORM_TOP_OFFSET               150
 #define LOGIN_FORM_AVATAR_HEIGHT            80
-#define LOGIN_FORM_MARGIN                   40
+#define LOGIN_FORM_MARGIN_LEFT              120
+#define LOGIN_FORM_MARGIN_RIGHT             10
 
-#define TASK_LIST_CELL_HEIGHT               45
+#define TASK_LIST_CELL_HEIGHT               100
 
 #define SEC_ATTR_USER                       @"user"
 #define SEC_ATTR_PASS                       @"pwd"
@@ -55,5 +56,7 @@
 
 #define PING_TIME_INTERVAL                  600
 #define AUTO_DATA_SYNC_TIME_INTERVAL        5
+
+#define PULL_TO_CREATE_TH                   -50
 
 #endif

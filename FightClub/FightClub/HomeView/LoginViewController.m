@@ -68,7 +68,8 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self.navigationItem setTitleView:[[Utils getFcAppDelegate] fcTitleLabelView]];
+//    [self.navigationController setNavigationBarHidden:NO animated:YES];
+//    [self.navigationItem setTitleView:[[Utils getFcAppDelegate] fcTitleLabelView]];
     
 }
 
@@ -80,16 +81,15 @@
 
 - (UIStatusBarStyle)preferredStatusBarStyle
 {
-    return UIStatusBarStyleLightContent;
+    return UIStatusBarStyleDefault;
 }
 
 - (void) createLoginForm
 {
     CGRect frame = [[UIScreen mainScreen] bounds];
-    UITableView* form = [[UITableView alloc] initWithFrame:CGRectMake(LOGIN_FORM_MARGIN, LOGIN_FORM_TOP_OFFSET, frame.size.width - LOGIN_FORM_MARGIN * 2, LOGIN_FORM_CELL_HEIGHT*2) style:UITableViewStylePlain];
+    UITableView* form = [[UITableView alloc] initWithFrame:CGRectMake(LOGIN_FORM_MARGIN_LEFT, LOGIN_FORM_TOP_OFFSET, frame.size.width - LOGIN_FORM_MARGIN_LEFT - LOGIN_FORM_MARGIN_RIGHT, LOGIN_FORM_CELL_HEIGHT*2) style:UITableViewStylePlain];
     form.delegate = self;
     form.dataSource = self;
-    
     [form setScrollEnabled:NO];
     [form setBounces:NO];
     
@@ -115,23 +115,25 @@
 //    [self.mainView addSubview:self.avatar];
     
     
-    self.username = [[UITextField alloc] initWithFrame:CGRectMake(LOGIN_FORM_CELL_FIELD_PADDING, 0, frame.size.width - LOGIN_FORM_MARGIN * 2 - LOGIN_FORM_CELL_FIELD_PADDING * 2, LOGIN_FORM_CELL_HEIGHT)];
+    self.username = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, frame.size.width - LOGIN_FORM_MARGIN_LEFT - LOGIN_FORM_MARGIN_RIGHT, LOGIN_FORM_CELL_HEIGHT)];
     [self.username setPlaceholder:@"Username"];
-    [self.username setFont:[UIFont systemFontOfSize:14]];
+    [self.username setFont:[UIFont fontWithName:@"MankSans" size:40]];
+    [self.username setTextColor:FC_THEME_TASK_HEADER_TEXT_COLOR];
     self.username.delegate = self;
     
-    self.password = [[UITextField alloc] initWithFrame:CGRectMake(LOGIN_FORM_CELL_FIELD_PADDING, 0, frame.size.width - LOGIN_FORM_MARGIN * 2 - LOGIN_FORM_CELL_FIELD_PADDING * 2, LOGIN_FORM_CELL_HEIGHT)];
+    self.password = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, frame.size.width - LOGIN_FORM_MARGIN_LEFT - LOGIN_FORM_MARGIN_RIGHT, LOGIN_FORM_CELL_HEIGHT)];
     [self.password setPlaceholder:@"Password"];
-    [self.password setFont:[UIFont systemFontOfSize:14]];
+    [self.password setFont:[UIFont fontWithName:@"MankSans" size:40]];
+    [self.password setTextColor:FC_THEME_TASK_HEADER_TEXT_COLOR];
     self.password.secureTextEntry = YES;
     self.password.delegate = self;
     
     self.loginBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.loginBtn.frame = CGRectMake(LOGIN_FORM_MARGIN, LOGIN_FORM_TOP_OFFSET + LOGIN_FORM_CELL_HEIGHT*2 + 30, frame.size.width - LOGIN_FORM_MARGIN * 2, LOGIN_FORM_CELL_HEIGHT);
-    [self.loginBtn setBackgroundColor:FC_THEME_NAV_BAR_BG_COLOR];
+    self.loginBtn.frame = CGRectMake(LOGIN_FORM_MARGIN_LEFT+40, LOGIN_FORM_TOP_OFFSET + LOGIN_FORM_CELL_HEIGHT*2 + 30, 72, 30);
+    [self.loginBtn setBackgroundImage:[UIImage imageNamed:@"button_bg.png"] forState:UIControlStateNormal];
     [self.loginBtn setTitle:@"LOG IN" forState:UIControlStateNormal];
-    [[self.loginBtn titleLabel] setFont:[UIFont systemFontOfSize:12]];
-    [self.loginBtn setTitleColor:FC_COLOR_WHITE forState:UIControlStateNormal];
+    [[self.loginBtn titleLabel] setFont:[UIFont fontWithName:@"MankSans" size:20]];
+    [self.loginBtn setTitleColor:FC_THEME_TASK_HEADER_TEXT_COLOR forState:UIControlStateNormal];
     self.loginBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
     [self.loginBtn setEnabled:YES];
     self.loginBtn.layer.cornerRadius = 5;
@@ -229,10 +231,10 @@
 {
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    [cell setBackgroundColor:FC_COLOR_TRANSPARENT];
     switch (indexPath.section) {
         case kLoginFormTableUsernameSection:
             [cell addSubview:self.username];
-            [cell addSubview:self.separator];
             break;
         case kLoginFormTablePasswordSection:
             [cell addSubview:self.password];

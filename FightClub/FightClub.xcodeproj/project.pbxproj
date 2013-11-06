@@ -15,6 +15,7 @@
 		0D3EF29C181C1A0000B035DB /* SecManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D3EF29B181C1A0000B035DB /* SecManager.m */; };
 		0D3EF29F181CAD8B00B035DB /* FcAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D3EF29E181CAD8B00B035DB /* FcAlert.m */; };
 		0D3EF2A2181CB67B00B035DB /* ServicesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D3EF2A1181CB67B00B035DB /* ServicesManager.m */; };
+		0DD0EEC9182A7155007D1516 /* CreateTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DD0EEC8182A7155007D1516 /* CreateTaskViewController.m */; };
 		0DE2F1CB181D65DF006EDEA4 /* BusyIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DE2F1CA181D65DF006EDEA4 /* BusyIndicator.m */; };
 		0DE2F1CE181EB532006EDEA4 /* BaseHttpOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DE2F1CD181EB532006EDEA4 /* BaseHttpOperation.m */; };
 		0DE2F1D1181EB571006EDEA4 /* OperationParams.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DE2F1D0181EB571006EDEA4 /* OperationParams.m */; };
@@ -25,6 +26,8 @@
 		0DE2F1F51823785F006EDEA4 /* OperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DE2F1F41823785F006EDEA4 /* OperationManager.m */; };
 		0DE2F1F81824DFD1006EDEA4 /* mathilde.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0DE2F1F71824DFD1006EDEA4 /* mathilde.otf */; };
 		0DE2F1FB1824E0C0006EDEA4 /* toolbar_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DE2F1FA1824E0C0006EDEA4 /* toolbar_bg.png */; };
+		0DE2F1FD1828E808006EDEA4 /* MankSans.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0DE2F1FC1828E808006EDEA4 /* MankSans.ttf */; };
+		0DE2F1FF1828ED9E006EDEA4 /* button_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DE2F1FE1828ED9E006EDEA4 /* button_bg@2x.png */; };
 		0DF39B76181968B200F6B500 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DF39B75181968B200F6B500 /* Foundation.framework */; };
 		0DF39B78181968B200F6B500 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DF39B77181968B200F6B500 /* CoreGraphics.framework */; };
 		0DF39B7A181968B200F6B500 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DF39B79181968B200F6B500 /* UIKit.framework */; };
@@ -68,6 +71,8 @@
 		0D3EF29E181CAD8B00B035DB /* FcAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FcAlert.m; path = Common/FcAlert.m; sourceTree = "<group>"; };
 		0D3EF2A0181CB67B00B035DB /* ServicesManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ServicesManager.h; path = Common/ServicesManager.h; sourceTree = "<group>"; };
 		0D3EF2A1181CB67B00B035DB /* ServicesManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ServicesManager.m; path = Common/ServicesManager.m; sourceTree = "<group>"; };
+		0DD0EEC7182A7155007D1516 /* CreateTaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CreateTaskViewController.h; path = HomeView/CreateTaskViewController.h; sourceTree = "<group>"; };
+		0DD0EEC8182A7155007D1516 /* CreateTaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CreateTaskViewController.m; path = HomeView/CreateTaskViewController.m; sourceTree = "<group>"; };
 		0DE2F1C9181D65DF006EDEA4 /* BusyIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BusyIndicator.h; path = Common/BusyIndicator.h; sourceTree = "<group>"; };
 		0DE2F1CA181D65DF006EDEA4 /* BusyIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BusyIndicator.m; path = Common/BusyIndicator.m; sourceTree = "<group>"; };
 		0DE2F1CC181EB532006EDEA4 /* BaseHttpOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BaseHttpOperation.h; path = Common/BaseHttpOperation.h; sourceTree = "<group>"; };
@@ -85,6 +90,8 @@
 		0DE2F1F41823785F006EDEA4 /* OperationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OperationManager.m; path = Common/OperationManager.m; sourceTree = "<group>"; };
 		0DE2F1F71824DFD1006EDEA4 /* mathilde.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = mathilde.otf; path = FightClub/Resources/fonts/mathilde.otf; sourceTree = "<group>"; };
 		0DE2F1FA1824E0C0006EDEA4 /* toolbar_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = toolbar_bg.png; path = FightClub/Resources/images/toolbar_bg.png; sourceTree = "<group>"; };
+		0DE2F1FC1828E808006EDEA4 /* MankSans.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = MankSans.ttf; path = FightClub/Resources/fonts/MankSans.ttf; sourceTree = "<group>"; };
+		0DE2F1FE1828ED9E006EDEA4 /* button_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button_bg@2x.png"; path = "FightClub/Resources/images/button_bg@2x.png"; sourceTree = "<group>"; };
 		0DF39B72181968B200F6B500 /* FightClub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FightClub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0DF39B75181968B200F6B500 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		0DF39B77181968B200F6B500 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -184,6 +191,7 @@
 		0DE2F1F61824DF60006EDEA4 /* fonts */ = {
 			isa = PBXGroup;
 			children = (
+				0DE2F1FC1828E808006EDEA4 /* MankSans.ttf */,
 				0DE2F1F71824DFD1006EDEA4 /* mathilde.otf */,
 			);
 			name = fonts;
@@ -192,6 +200,7 @@
 		0DE2F1F91824E0B2006EDEA4 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				0DE2F1FE1828ED9E006EDEA4 /* button_bg@2x.png */,
 				0DE2F1FA1824E0C0006EDEA4 /* toolbar_bg.png */,
 			);
 			name = images;
@@ -280,6 +289,8 @@
 				0D099F8318196F08004667B6 /* FightClubRootViewController.m */,
 				0D3EF28B181BB06600B035DB /* LoginViewController.h */,
 				0D3EF28C181BB06600B035DB /* LoginViewController.m */,
+				0DD0EEC7182A7155007D1516 /* CreateTaskViewController.h */,
+				0DD0EEC8182A7155007D1516 /* CreateTaskViewController.m */,
 			);
 			name = HomeView;
 			sourceTree = "<group>";
@@ -366,7 +377,9 @@
 				0DE2F1F81824DFD1006EDEA4 /* mathilde.otf in Resources */,
 				0DF39B82181968B200F6B500 /* InfoPlist.strings in Resources */,
 				0D099F8E181971AC004667B6 /* login.jpg in Resources */,
+				0DE2F1FF1828ED9E006EDEA4 /* button_bg@2x.png in Resources */,
 				0D3EF294181BD8D900B035DB /* 21.png in Resources */,
+				0DE2F1FD1828E808006EDEA4 /* MankSans.ttf in Resources */,
 				0DF39B8D181968B200F6B500 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -389,6 +402,7 @@
 				0DE2F1CB181D65DF006EDEA4 /* BusyIndicator.m in Sources */,
 				0DE2F1EF182265CF006EDEA4 /* ConnectionUtils.m in Sources */,
 				0DE2F1D1181EB571006EDEA4 /* OperationParams.m in Sources */,
+				0DD0EEC9182A7155007D1516 /* CreateTaskViewController.m in Sources */,
 				0DE2F1F218229DEC006EDEA4 /* Utils.m in Sources */,
 				0DF39B88181968B200F6B500 /* AppDelegate.m in Sources */,
 				0D3EF299181C182F00B035DB /* LoginOperation.m in Sources */,
