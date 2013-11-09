@@ -15,6 +15,7 @@
 		0D3EF29C181C1A0000B035DB /* SecManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D3EF29B181C1A0000B035DB /* SecManager.m */; };
 		0D3EF29F181CAD8B00B035DB /* FcAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D3EF29E181CAD8B00B035DB /* FcAlert.m */; };
 		0D3EF2A2181CB67B00B035DB /* ServicesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D3EF2A1181CB67B00B035DB /* ServicesManager.m */; };
+		0D573318182CEA3B002AC267 /* login_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D573317182CEA3B002AC267 /* login_bg.png */; };
 		0DD0EEC9182A7155007D1516 /* CreateTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DD0EEC8182A7155007D1516 /* CreateTaskViewController.m */; };
 		0DE2F1CB181D65DF006EDEA4 /* BusyIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DE2F1CA181D65DF006EDEA4 /* BusyIndicator.m */; };
 		0DE2F1CE181EB532006EDEA4 /* BaseHttpOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DE2F1CD181EB532006EDEA4 /* BaseHttpOperation.m */; };
@@ -71,6 +72,7 @@
 		0D3EF29E181CAD8B00B035DB /* FcAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FcAlert.m; path = Common/FcAlert.m; sourceTree = "<group>"; };
 		0D3EF2A0181CB67B00B035DB /* ServicesManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ServicesManager.h; path = Common/ServicesManager.h; sourceTree = "<group>"; };
 		0D3EF2A1181CB67B00B035DB /* ServicesManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ServicesManager.m; path = Common/ServicesManager.m; sourceTree = "<group>"; };
+		0D573317182CEA3B002AC267 /* login_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = login_bg.png; path = FightClub/Resources/images/login_bg.png; sourceTree = "<group>"; };
 		0DD0EEC7182A7155007D1516 /* CreateTaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CreateTaskViewController.h; path = HomeView/CreateTaskViewController.h; sourceTree = "<group>"; };
 		0DD0EEC8182A7155007D1516 /* CreateTaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CreateTaskViewController.m; path = HomeView/CreateTaskViewController.m; sourceTree = "<group>"; };
 		0DE2F1C9181D65DF006EDEA4 /* BusyIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BusyIndicator.h; path = Common/BusyIndicator.h; sourceTree = "<group>"; };
@@ -200,6 +202,7 @@
 		0DE2F1F91824E0B2006EDEA4 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				0D573317182CEA3B002AC267 /* login_bg.png */,
 				0DE2F1FE1828ED9E006EDEA4 /* button_bg@2x.png */,
 				0DE2F1FA1824E0C0006EDEA4 /* toolbar_bg.png */,
 			);
@@ -381,6 +384,7 @@
 				0D3EF294181BD8D900B035DB /* 21.png in Resources */,
 				0DE2F1FD1828E808006EDEA4 /* MankSans.ttf in Resources */,
 				0DF39B8D181968B200F6B500 /* Images.xcassets in Resources */,
+				0D573318182CEA3B002AC267 /* login_bg.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

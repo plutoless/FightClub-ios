@@ -24,6 +24,7 @@
 @property (nonatomic, retain) UITextField* username;
 @property (nonatomic, retain) UITextField* password;
 @property (nonatomic, retain) UIButton* loginBtn;
+@property (nonatomic, retain) UIView* loginFieldBorder;
 
 @property (nonatomic, assign) UITextField* activeTextField;
 

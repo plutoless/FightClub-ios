@@ -10,6 +10,7 @@
 
 @interface FightClubRootViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>{
     BOOL isUpdating;
+    BOOL isCreateShowing;
 }
 
 @property (nonatomic, retain) UIView* homeView;

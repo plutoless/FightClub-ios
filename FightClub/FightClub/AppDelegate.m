@@ -36,7 +36,7 @@
 //    [self applyNavigationBarStyles];
     
     //we initially hide the navigation bar as we don't need this in login page
-    [self.navigationController setNavigationBarHidden:YES animated:NO];
+//    [self.navigationController setNavigationBarHidden:YES animated:NO];
 //    [self.navigationController.navigationBar setTranslucent:NO];
     self.window.rootViewController = self.navigationController;
     self.window.rootViewController.modalPresentationStyle = UIModalPresentationCurrentContext;
@@ -53,7 +53,7 @@
         NSArray *tasks = [[FcDatabase getInstance] getTasks];
         NSArray *sortedTasks = [Utils sortTasks:tasks];
         [self.homeViewController setTasks:sortedTasks];
-        [self.navigationController setNavigationBarHidden:YES animated:NO];
+//        [self.navigationController setNavigationBarHidden:YES animated:NO];
         [self.navigationController pushViewController:self.homeViewController animated:NO];
         [[ConnectionUtils getInstance] prepareBackgroundTasks];
     }

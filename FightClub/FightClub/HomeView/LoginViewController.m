@@ -31,14 +31,14 @@
         // Custom initialization
         CGRect frame = [[UIScreen mainScreen] bounds];
         self.mainView = [[UIView alloc] initWithFrame:frame];
-        self.edgesForExtendedLayout = UIRectEdgeNone;
-        [self.mainView setBackgroundColor:FC_THEME_BG_COLOR];
-//        self.backgroundView = [[UIImageView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-//        UIImage *bgImg = [UIImage imageNamed:@"login.jpg"];
-//        [self.backgroundView setImage:bgImg];
-//        [self.backgroundView setContentMode:UIViewContentModeRight];
-//        [self.backgroundView setContentScaleFactor:1.8];
-//        [self.mainView addSubview:self.backgroundView];
+//        self.edgesForExtendedLayout = UIRectEdgeNone;
+//        [self.mainView setBackgroundColor:FC_THEME_BG_COLOR];
+        self.backgroundView = [[UIImageView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+        UIImage *bgImg = [UIImage imageNamed:@"login_bg"];
+        [self.backgroundView setImage:bgImg];
+        [self.backgroundView setContentMode:UIViewContentModeRight];
+        [self.backgroundView setContentScaleFactor:1.8];
+        [self.mainView addSubview:self.backgroundView];
         
         [self createContent];
         [self createLoginForm];
@@ -68,7 +68,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-//    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
 //    [self.navigationItem setTitleView:[[Utils getFcAppDelegate] fcTitleLabelView]];
     
 }
@@ -81,7 +81,7 @@
 
 - (UIStatusBarStyle)preferredStatusBarStyle
 {
-    return UIStatusBarStyleDefault;
+    return UIStatusBarStyleLightContent;
 }
 
 - (void) createLoginForm
@@ -115,34 +115,48 @@
 //    [self.mainView addSubview:self.avatar];
     
     
-    self.username = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, frame.size.width - LOGIN_FORM_MARGIN_LEFT - LOGIN_FORM_MARGIN_RIGHT, LOGIN_FORM_CELL_HEIGHT)];
-    [self.username setPlaceholder:@"Username"];
-    [self.username setFont:[UIFont fontWithName:@"MankSans" size:40]];
-    [self.username setTextColor:FC_THEME_TASK_HEADER_TEXT_COLOR];
+    
+    self.username = [[UITextField alloc] initWithFrame:CGRectMake(0, 5, frame.size.width - LOGIN_FORM_MARGIN_LEFT - LOGIN_FORM_MARGIN_RIGHT, LOGIN_FORM_CELL_FD_HEIGHT)];
+    NSAttributedString* userPlaceholder = [[NSAttributedString alloc] initWithString:@"Username" attributes:@{NSForegroundColorAttributeName: FC_COLOR_WHITE_TRANS}];
+    [self.username setAttributedPlaceholder:userPlaceholder];
+    [self.username setFont:[UIFont fontWithName:@"MankSans" size:24]];
+    [self.username setTextColor:FC_COLOR_WHITE];
+    self.username.textAlignment = NSTextAlignmentCenter;
+    self.username.layer.borderWidth = 1.0;
+    self.username.layer.borderColor = FC_COLOR_WHITE.CGColor;
     self.username.delegate = self;
     
-    self.password = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, frame.size.width - LOGIN_FORM_MARGIN_LEFT - LOGIN_FORM_MARGIN_RIGHT, LOGIN_FORM_CELL_HEIGHT)];
-    [self.password setPlaceholder:@"Password"];
-    [self.password setFont:[UIFont fontWithName:@"MankSans" size:40]];
-    [self.password setTextColor:FC_THEME_TASK_HEADER_TEXT_COLOR];
+    self.password = [[UITextField alloc] initWithFrame:CGRectMake(0, 5, frame.size.width - LOGIN_FORM_MARGIN_LEFT - LOGIN_FORM_MARGIN_RIGHT, LOGIN_FORM_CELL_FD_HEIGHT)];
+    NSAttributedString* passPlaceHolder = [[NSAttributedString alloc] initWithString:@"Password" attributes:@{NSForegroundColorAttributeName: FC_COLOR_WHITE_TRANS}];
+    [self.password setAttributedPlaceholder:passPlaceHolder];
+    [self.password setFont:[UIFont fontWithName:@"MankSans" size:24]];
+    [self.password setTextColor:FC_COLOR_WHITE];
+    self.password.textAlignment = NSTextAlignmentCenter;
+    self.password.layer.borderWidth = 1.0;
+    self.password.layer.borderColor = FC_COLOR_WHITE.CGColor;
     self.password.secureTextEntry = YES;
     self.password.delegate = self;
     
     self.loginBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.loginBtn.frame = CGRectMake(LOGIN_FORM_MARGIN_LEFT+40, LOGIN_FORM_TOP_OFFSET + LOGIN_FORM_CELL_HEIGHT*2 + 30, 72, 30);
-    [self.loginBtn setBackgroundImage:[UIImage imageNamed:@"button_bg.png"] forState:UIControlStateNormal];
+    self.loginBtn.frame = CGRectMake(LOGIN_FORM_MARGIN_LEFT, LOGIN_FORM_TOP_OFFSET + LOGIN_FORM_CELL_HEIGHT*2 + 5, frame.size.width - LOGIN_FORM_MARGIN_LEFT - LOGIN_FORM_MARGIN_RIGHT, LOGIN_FORM_CELL_FD_HEIGHT);
+    [self.loginBtn setBackgroundImage:[Utils createImageByColor:self.loginBtn.frame color:FC_COLOR_WHITE cornerRadius:0] forState:UIControlStateNormal];
     [self.loginBtn setTitle:@"LOG IN" forState:UIControlStateNormal];
-    [[self.loginBtn titleLabel] setFont:[UIFont fontWithName:@"MankSans" size:20]];
-    [self.loginBtn setTitleColor:FC_THEME_TASK_HEADER_TEXT_COLOR forState:UIControlStateNormal];
+    [[self.loginBtn titleLabel] setFont:[UIFont systemFontOfSize:16]];
+    [self.loginBtn setTitleColor:FC_COLOR_DARK_RED forState:UIControlStateNormal];
+    [self.loginBtn.titleLabel setTextAlignment:NSTextAlignmentCenter];
     self.loginBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
     [self.loginBtn setEnabled:YES];
-    self.loginBtn.layer.cornerRadius = 5;
     [self.loginBtn addTarget:self action:@selector(login) forControlEvents:UIControlEventTouchUpInside];
     
     [self.mainView addSubview:self.loginBtn];
     
     self.separator = [[UIView alloc] initWithFrame:CGRectMake(0, LOGIN_FORM_CELL_HEIGHT-1, frame.size.width, 1)];
     [self.separator setBackgroundColor:FC_THEME_DARK_TEXT_COLOR];
+    
+    
+//    self.loginFieldBorder = [[UIView alloc] initWithFrame:self.username.frame];
+//    self.loginFieldBorder.layer.borderColor = FC_COLOR_WHITE.CGColor;
+//    self.loginFieldBorder.layer.borderWidth = 1.0;
 }
 
 - (void) dismissKeyboard
@@ -208,6 +222,7 @@
     NSData* data = [NSKeyedArchiver archivedDataWithRootObject:[[SecManager getInstance] secAttributes]] ;
     [[NSUserDefaults standardUserDefaults] setObject:data forKey:SEC_DATA];
     [[NSUserDefaults standardUserDefaults] synchronize];
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
     [self.navigationController pushViewController:homeview animated:YES];
 }
 

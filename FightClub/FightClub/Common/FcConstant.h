@@ -15,18 +15,24 @@
 #define FC_THEME_TASK_HEADER_TEXT_COLOR     [UIColor colorWithRed:0.443 green:0.427 blue:0.427 alpha:1]
 #define FC_THEME_TASK_CONTENT_TEXT_COLOR    [UIColor colorWithRed:0.588 green:0.584 blue:0.584 alpha:1]
 #define FC_COLOR_WHITE                      [UIColor colorWithWhite:1 alpha:1]
+#define FC_COLOR_WHITE_TRANS                [UIColor colorWithWhite:1 alpha:0.5]
 #define FC_COLOR_BLACK                      [UIColor colorWithWhite:0 alpha:1]
 #define FC_COLOR_TRANSPARENT                [UIColor clearColor]
+#define FC_COLOR_DARK_RED                   [UIColor colorWithRed:0.686 green:0.365 blue:0.369 alpha:1]
 
 #pragma login form constants..
 #define LOGIN_FORM_CELL_HEIGHT              60
+#define LOGIN_FORM_CELL_FD_HEIGHT           50
 #define LOGIN_FORM_CELL_FIELD_PADDING       15
 #define LOGIN_FORM_TOP_OFFSET               150
 #define LOGIN_FORM_AVATAR_HEIGHT            80
-#define LOGIN_FORM_MARGIN_LEFT              120
-#define LOGIN_FORM_MARGIN_RIGHT             10
+#define LOGIN_FORM_MARGIN_LEFT              40
+#define LOGIN_FORM_MARGIN_RIGHT             40
 
-#define TASK_LIST_CELL_HEIGHT               100
+#define TASK_LIST_CELL_HEIGHT               40
+#define TASK_LIST_HEADER_HEIGHT             40
+#define TASK_LIST_CREATE_TASK_HEIGHT        30
+#define TASK_LIST_CREATE_TASK_BTN_WIDTH     50
 
 #define SEC_ATTR_USER                       @"user"
 #define SEC_ATTR_PASS                       @"pwd"
