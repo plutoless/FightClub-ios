@@ -16,6 +16,7 @@
 		0D3EF29F181CAD8B00B035DB /* FcAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D3EF29E181CAD8B00B035DB /* FcAlert.m */; };
 		0D3EF2A2181CB67B00B035DB /* ServicesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D3EF2A1181CB67B00B035DB /* ServicesManager.m */; };
 		0D573318182CEA3B002AC267 /* login_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D573317182CEA3B002AC267 /* login_bg.png */; };
+		0D64E8D9182FD7DC00BD9F1B /* AllTouchesGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D64E8D8182FD7DC00BD9F1B /* AllTouchesGestureRecognizer.m */; };
 		0DD0EEC9182A7155007D1516 /* CreateTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DD0EEC8182A7155007D1516 /* CreateTaskViewController.m */; };
 		0DE2F1CB181D65DF006EDEA4 /* BusyIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DE2F1CA181D65DF006EDEA4 /* BusyIndicator.m */; };
 		0DE2F1CE181EB532006EDEA4 /* BaseHttpOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DE2F1CD181EB532006EDEA4 /* BaseHttpOperation.m */; };
@@ -73,6 +74,8 @@
 		0D3EF2A0181CB67B00B035DB /* ServicesManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ServicesManager.h; path = Common/ServicesManager.h; sourceTree = "<group>"; };
 		0D3EF2A1181CB67B00B035DB /* ServicesManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ServicesManager.m; path = Common/ServicesManager.m; sourceTree = "<group>"; };
 		0D573317182CEA3B002AC267 /* login_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = login_bg.png; path = FightClub/Resources/images/login_bg.png; sourceTree = "<group>"; };
+		0D64E8D7182FD7DC00BD9F1B /* AllTouchesGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AllTouchesGestureRecognizer.h; path = Common/AllTouchesGestureRecognizer.h; sourceTree = "<group>"; };
+		0D64E8D8182FD7DC00BD9F1B /* AllTouchesGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AllTouchesGestureRecognizer.m; path = Common/AllTouchesGestureRecognizer.m; sourceTree = "<group>"; };
 		0DD0EEC7182A7155007D1516 /* CreateTaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CreateTaskViewController.h; path = HomeView/CreateTaskViewController.h; sourceTree = "<group>"; };
 		0DD0EEC8182A7155007D1516 /* CreateTaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CreateTaskViewController.m; path = HomeView/CreateTaskViewController.m; sourceTree = "<group>"; };
 		0DE2F1C9181D65DF006EDEA4 /* BusyIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BusyIndicator.h; path = Common/BusyIndicator.h; sourceTree = "<group>"; };
@@ -186,6 +189,8 @@
 				0DE2F1F118229DEC006EDEA4 /* Utils.m */,
 				0DE2F1F31823785F006EDEA4 /* OperationManager.h */,
 				0DE2F1F41823785F006EDEA4 /* OperationManager.m */,
+				0D64E8D7182FD7DC00BD9F1B /* AllTouchesGestureRecognizer.h */,
+				0D64E8D8182FD7DC00BD9F1B /* AllTouchesGestureRecognizer.m */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -414,6 +419,7 @@
 				0DF39B84181968B200F6B500 /* main.m in Sources */,
 				0D099F8418196F08004667B6 /* FightClubRootViewController.m in Sources */,
 				0DE2F1F51823785F006EDEA4 /* OperationManager.m in Sources */,
+				0D64E8D9182FD7DC00BD9F1B /* AllTouchesGestureRecognizer.m in Sources */,
 				0DE2F1CE181EB532006EDEA4 /* BaseHttpOperation.m in Sources */,
 				0D3EF2A2181CB67B00B035DB /* ServicesManager.m in Sources */,
 				0D3EF29F181CAD8B00B035DB /* FcAlert.m in Sources */,

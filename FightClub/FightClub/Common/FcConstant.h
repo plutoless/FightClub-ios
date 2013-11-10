@@ -10,6 +10,7 @@
 #define FightClub_FcConstant_h
 
 #define FC_THEME_BG_COLOR                   [UIColor colorWithWhite:0.953 alpha:1]
+#define FC_THEME_SEP_COLOR                  [UIColor colorWithWhite:0.847 alpha:0.4]
 #define FC_THEME_DARK_TEXT_COLOR            [UIColor colorWithWhite:0.847 alpha:1]
 #define FC_THEME_NAV_BAR_BG_COLOR           [UIColor colorWithRed:0.863 green:0.282 blue:0.282 alpha:1]
 #define FC_THEME_TASK_HEADER_TEXT_COLOR     [UIColor colorWithRed:0.443 green:0.427 blue:0.427 alpha:1]
@@ -19,6 +20,7 @@
 #define FC_COLOR_BLACK                      [UIColor colorWithWhite:0 alpha:1]
 #define FC_COLOR_TRANSPARENT                [UIColor clearColor]
 #define FC_COLOR_DARK_RED                   [UIColor colorWithRed:0.686 green:0.365 blue:0.369 alpha:1]
+
 
 #pragma login form constants..
 #define LOGIN_FORM_CELL_HEIGHT              60
@@ -31,8 +33,9 @@
 
 #define TASK_LIST_CELL_HEIGHT               40
 #define TASK_LIST_HEADER_HEIGHT             40
-#define TASK_LIST_CREATE_TASK_HEIGHT        30
+#define TASK_LIST_CREATE_TASK_HEIGHT        40
 #define TASK_LIST_CREATE_TASK_BTN_WIDTH     50
+#define TASK_LIST_CREATE_TASK_PADDING       10
 
 #define SEC_ATTR_USER                       @"user"
 #define SEC_ATTR_PASS                       @"pwd"

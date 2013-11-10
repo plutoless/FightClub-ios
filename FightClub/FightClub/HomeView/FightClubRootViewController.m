@@ -11,6 +11,7 @@
 #import "LoginViewController.h"
 #import "Utils.h"
 #import "CreateTaskViewController.h"
+#import "AllTouchesGestureRecognizer.h"
 
 #define TASK_LIST_TABLE_PADDING_X 10
 
@@ -49,15 +50,28 @@
         self.tblView.sectionHeaderHeight = 0.0;
         self.tblView.separatorStyle = UITableViewCellSeparatorStyleNone;
         
-        UITextField* createTask = [[UITextField alloc] initWithFrame:CGRectMake(0, -TASK_LIST_CREATE_TASK_HEIGHT, screenFrame.size.width - TASK_LIST_CREATE_TASK_BTN_WIDTH, TASK_LIST_CREATE_TASK_HEIGHT)];
-        [createTask setPlaceholder:@"Buy me a milk"];
-        UIButton * createTaskBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        [createTaskBtn setFrame:CGRectMake(screenFrame.size.width - TASK_LIST_CREATE_TASK_BTN_WIDTH, -TASK_LIST_CREATE_TASK_HEIGHT, TASK_LIST_CREATE_TASK_BTN_WIDTH, TASK_LIST_CREATE_TASK_HEIGHT)];
-        [createTaskBtn setTitle:@"Done" forState:UIControlStateNormal];
-        [self.tblView addSubview:createTask];
-        [self.tblView addSubview:createTaskBtn];
+        self.touchOverlay = [[UIView alloc] initWithFrame:CGRectMake(0, TASK_LIST_CREATE_TASK_HEIGHT, screenFrame.size.width, screenFrame.size.height - TASK_LIST_CREATE_TASK_HEIGHT)];
+//        [self.touchOverlay setBackgroundColor:FC_COLOR_BLACK];
+        [self.touchOverlay setHidden:YES];
+        AllTouchesGestureRecognizer* touch = [[AllTouchesGestureRecognizer alloc] initWithTarget:self action:@selector(hideCreateTask)];
+        [self.touchOverlay addGestureRecognizer:touch];
         
+        
+        self.topView = [[UIView alloc] initWithFrame:CGRectMake(0, -TASK_LIST_CREATE_TASK_HEIGHT, screenFrame.size.width, TASK_LIST_CREATE_TASK_HEIGHT)];
+        
+        self.createTaskField = [[UITextField alloc] initWithFrame:CGRectMake(TASK_LIST_CREATE_TASK_PADDING, 0, screenFrame.size.width - TASK_LIST_CREATE_TASK_PADDING*2, TASK_LIST_CREATE_TASK_HEIGHT)];
+//        [self.createTaskField setBackgroundColor:FC_COLOR_BLACK];
+        [self.createTaskField setTextColor:FC_THEME_TASK_HEADER_TEXT_COLOR];
+        [self.createTaskField setPlaceholder:@"New a task..."];
+        UIView* topViewSeperator = [[UIView alloc] initWithFrame:CGRectMake(0, TASK_LIST_CREATE_TASK_HEIGHT - 1, screenFrame.size.width, 1)];
+        [topViewSeperator setBackgroundColor:FC_THEME_SEP_COLOR];
+        [self.topView addSubview:self.createTaskField];
+        [self.topView addSubview:topViewSeperator];
+        
+        
+        [self.homeView addSubview:self.topView];
         [self.homeView addSubview:self.tblView];
+        [self.homeView addSubview:self.touchOverlay];
         
         self.view = self.homeView;
     }
@@ -104,13 +118,20 @@
 
 - (void) showCreateTask
 {
+    [self.createTaskField becomeFirstResponder];
     [self.tblView setContentInset:UIEdgeInsetsMake(TASK_LIST_CREATE_TASK_HEIGHT, 0, 0, 0)];
+    [self.touchOverlay setHidden:NO];
     isCreateShowing = YES;
 }
 
 - (void) hideCreateTask
 {
-    [self.tblView setContentInset:UIEdgeInsetsMake(0, 0, 0, 0)];
+    [UIView animateWithDuration:0.3
+        animations:^{
+            [self.tblView setContentInset:UIEdgeInsetsMake(0, 0, 0, 0)];
+        }];
+    [self.createTaskField resignFirstResponder];
+    [self.touchOverlay setHidden:YES];
     isCreateShowing = NO;
 }
 
@@ -141,7 +162,7 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     UIView* seperator = [[UIView alloc] initWithFrame:CGRectMake(0, TASK_LIST_CELL_HEIGHT-1, frame.size.width, 1)];
-    [seperator setBackgroundColor:FC_THEME_DARK_TEXT_COLOR];
+    [seperator setBackgroundColor:FC_THEME_SEP_COLOR];
     [cell addSubview:seperator];
     
     
@@ -199,12 +220,21 @@
     
 }
 
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+//- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+//{
+//    if ([self.tblView contentOffset].y < -(TASK_LIST_CREATE_TASK_HEIGHT - 1)) {
+//        [self showCreateTask];
+//    }
+//}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    if ([self.tblView contentOffset].y < 0) {
+    CGFloat offset = [scrollView contentOffset].y;
+    if (offset >= -TASK_LIST_CREATE_TASK_HEIGHT && offset <= 0) {
+        CGRect frame = [self.createTaskField frame];
+        [self.topView setFrame:CGRectMake(0, -TASK_LIST_CREATE_TASK_HEIGHT - offset, frame.size.width, frame.size.height)];
+    } else if (offset < -TASK_LIST_CREATE_TASK_HEIGHT && ![self.createTaskField isFirstResponder]){
         [self showCreateTask];
-    } else if (isCreateShowing) {
-        [self hideCreateTask];
     }
 }
 
