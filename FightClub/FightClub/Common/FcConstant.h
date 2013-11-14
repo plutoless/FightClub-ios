@@ -17,9 +17,11 @@
 #define FC_THEME_TASK_CONTENT_TEXT_COLOR    [UIColor colorWithRed:0.588 green:0.584 blue:0.584 alpha:1]
 #define FC_COLOR_WHITE                      [UIColor colorWithWhite:1 alpha:1]
 #define FC_COLOR_WHITE_TRANS                [UIColor colorWithWhite:1 alpha:0.5]
+#define FC_COLOR_BLACK_TRANS                [UIColor colorWithWhite:0 alpha:0.2]
 #define FC_COLOR_BLACK                      [UIColor colorWithWhite:0 alpha:1]
 #define FC_COLOR_TRANSPARENT                [UIColor clearColor]
 #define FC_COLOR_DARK_RED                   [UIColor colorWithRed:0.686 green:0.365 blue:0.369 alpha:1]
+#define FC_THEME_TASK_LIST_BG_1             [UIColor colorWithRed:0.686 green:0.365 blue:0.369 alpha:1]
 
 
 #pragma login form constants..
@@ -60,6 +62,17 @@
 #define TASK_ATTR_EXISTS                    @"tidExists"
 #define TASK_ATTR_EXISTS_VAL_YES            @"yes"
 #define TASK_ATTR_EXISTS_VAL_NO             @"no"
+#define TASK_ATTR_ISDONE                    @"isdone"
+#define TASK_ATTR_ISDONE_YES                @"1"
+#define TASK_ATTR_ISDONE_NO                 @"0"
+
+#define CAT_ATTR_TGID                       @"tgid"
+#define CAT_ATTR_TITLE                      @"title"
+#define CAT_ATTR_ITEMS                      @"items"
+#define CAT_ATTR_PRIORITY                   @"priority"
+
+#define TASK_CATEGORY_MOBILE_TGID           @"-99"
+#define TASK_CATEGORY_MOBILE_PRIORITY       @"999"
 
 #define DB_FILE_NAME                        @"fightclub.sqlite"
 

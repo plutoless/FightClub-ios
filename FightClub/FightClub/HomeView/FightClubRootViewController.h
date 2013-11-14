@@ -8,17 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FightClubRootViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>{
-    BOOL isUpdating;
+@interface FightClubRootViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>{
+    BOOL needAnimate;
     BOOL isCreateShowing;
 }
 
 @property (nonatomic, retain) UIView* homeView;
-@property (nonatomic, retain) NSArray* tasks;
+@property (nonatomic, retain) NSMutableArray* tasks;
 @property (nonatomic, retain) UITableView* tblView;
 @property (nonatomic, retain) UIView* topView;
 @property (nonatomic, retain) UITextField* createTaskField;
 @property (nonatomic, retain) UIView* touchOverlay;
 
-- (void) updateTasks:(NSArray*)tasks;
+- (void) updateTasks:(NSMutableArray*)tasks;
 @end

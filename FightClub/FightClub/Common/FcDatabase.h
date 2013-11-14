@@ -20,6 +20,8 @@
 + (void) initDatabase;
 + (FcDatabase*) getInstance;
 - (void) insertTasks:(NSArray*)arrayOfTasks willDelete:(BOOL)willDelete;
-- (void) deleteTasks:(NSArray*)arrayOfTasks;
+- (void) deleteTasks:(NSArray*)arrayOfTasks willDeleteCategory:(BOOL)willDeleteCategory;
+- (void) updateTaskIsDone:(NSMutableDictionary*)task isdone:(BOOL)isdone;
 - (NSArray*) getTasks;
+- (NSArray*) getSortedTasks;
 @end

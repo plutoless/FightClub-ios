@@ -79,10 +79,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (UIStatusBarStyle)preferredStatusBarStyle
-{
-    return UIStatusBarStyleLightContent;
-}
 
 - (void) createLoginForm
 {
@@ -216,13 +212,13 @@
     
     [[BusyIndicator getInstance] dismissFromController:self];
     
-    NSArray* sortedTasks = [Utils sortTasks:Response];
+    NSMutableArray* sortedTasks = [[NSMutableArray alloc] initWithArray:[Utils sortTasks:Response]];
     [homeview setTasks:sortedTasks];
     [[FcDatabase getInstance] insertTasks:sortedTasks willDelete:YES];
     NSData* data = [NSKeyedArchiver archivedDataWithRootObject:[[SecManager getInstance] secAttributes]] ;
     [[NSUserDefaults standardUserDefaults] setObject:data forKey:SEC_DATA];
     [[NSUserDefaults standardUserDefaults] synchronize];
-    [self.navigationController setNavigationBarHidden:YES animated:NO];
+//    [self.navigationController setNavigationBarHidden:YES animated:NO];
     [self.navigationController pushViewController:homeview animated:YES];
 }
 

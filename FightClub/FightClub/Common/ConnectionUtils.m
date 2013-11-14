@@ -103,17 +103,17 @@ static ConnectionUtils* connectionUtils;
 
 - (void)didFetchTaskList:(NSArray*)Response
 {
-    FightClubRootViewController* homeviewController = [[Utils getFcAppDelegate] homeViewController];
-    NSArray* sortedTasks = [Utils sortTasks:Response];
-    [homeviewController updateTasks:sortedTasks];
-    [[FcDatabase getInstance] insertTasks:sortedTasks willDelete:YES];
+//    FightClubRootViewController* homeviewController = [[Utils getFcAppDelegate] homeViewController];
+//    NSArray* sortedTasks = [Utils sortTasks:Response];
+//    [homeviewController updateTasks:sortedTasks];
+//    [[FcDatabase getInstance] insertTasks:sortedTasks willDelete:YES];
     
     fetchLock = NO;
 }
 
 - (void)didFinishLoadingTaskList:(NSArray*)Response
 {
-    FightClubRootViewController* homeviewController = [[Utils getFcAppDelegate] homeViewController];
+//    FightClubRootViewController* homeviewController = [[Utils getFcAppDelegate] homeViewController];
 //    NSMutableArray* originExits = [[NSMutableArray alloc] init];
 //    NSMutableArray* responseExists = [[NSMutableArray alloc] init];
 //    NSMutableArray* toBeInsert = [[NSMutableArray alloc] init];
@@ -151,9 +151,9 @@ static ConnectionUtils* connectionUtils;
 //    
 //    [homeviewController updateTasks:Response];
     
-    NSArray* sortedTasks = [Utils sortTasks:Response];
-    [homeviewController updateTasks:sortedTasks];
-    [[FcDatabase getInstance] insertTasks:sortedTasks willDelete:YES];
+//    NSArray* sortedTasks = [Utils sortTasks:Response];
+//    [homeviewController updateTasks:sortedTasks];
+//    [[FcDatabase getInstance] insertTasks:sortedTasks willDelete:YES];
 //    [[FcDatabase getInstance] deleteTasks:toBeDelete];
     
 //    [homeviewController.navigationItem setTitle:@"Fight Club"];

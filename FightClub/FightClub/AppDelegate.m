@@ -24,6 +24,8 @@
 {
     [FcDatabase initDatabase];
     
+    [application setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
@@ -36,7 +38,7 @@
 //    [self applyNavigationBarStyles];
     
     //we initially hide the navigation bar as we don't need this in login page
-//    [self.navigationController setNavigationBarHidden:YES animated:NO];
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
 //    [self.navigationController.navigationBar setTranslucent:NO];
     self.window.rootViewController = self.navigationController;
     self.window.rootViewController.modalPresentationStyle = UIModalPresentationCurrentContext;
@@ -50,12 +52,10 @@
         [[SecManager getInstance] setSecAttributes:secManagerAttributes];
         
         // if login saved, start task view immediately
-        NSArray *tasks = [[FcDatabase getInstance] getTasks];
-        NSArray *sortedTasks = [Utils sortTasks:tasks];
-        [self.homeViewController setTasks:sortedTasks];
-//        [self.navigationController setNavigationBarHidden:YES animated:NO];
+        NSMutableArray *tasks = [[NSMutableArray alloc] initWithArray:[[FcDatabase getInstance] getSortedTasks]];
+        [self.homeViewController setTasks:tasks];
         [self.navigationController pushViewController:self.homeViewController animated:NO];
-        [[ConnectionUtils getInstance] prepareBackgroundTasks];
+//        [[ConnectionUtils getInstance] prepareBackgroundTasks];
     }
     
     return YES;
