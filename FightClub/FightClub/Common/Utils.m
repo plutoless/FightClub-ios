@@ -37,7 +37,7 @@
     return colorImage;
 }
 
-+ (NSArray*) sortTasks:(NSArray *)tasks
++ (NSMutableArray*) sortTasks:(NSArray *)tasks
 {
     NSMutableDictionary* categoryMapping = [[NSMutableDictionary alloc] init];
     for (NSMutableDictionary* task in tasks) {
@@ -51,7 +51,13 @@
             itemsForCurTgid = [category valueForKey:CAT_ATTR_ITEMS];
         }
         
-        [itemsForCurTgid addObject:task];
+        if ([task isKindOfClass:[NSDictionary class]]) {
+            NSMutableDictionary* muTask = [[NSMutableDictionary alloc] initWithDictionary:task];
+            [itemsForCurTgid addObject:muTask];
+        } else {
+            [itemsForCurTgid addObject:task];
+        }
+        
         
     }
     

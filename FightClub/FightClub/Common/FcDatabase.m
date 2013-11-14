@@ -131,12 +131,11 @@ static FcDatabase* database = nil;
     }
     
     for (NSArray* category in arrayOfTasks) {
-        NSDictionary* firstItem = [category objectAtIndex:0];
-        NSString *sqlInsertCategory = [NSString stringWithFormat:@"INSERT OR IGNORE INTO Category (tgid, title, priority) VALUES ('%@', '%@', '%@')", [firstItem valueForKey:TASK_ATTR_TGID], [firstItem valueForKey:TASK_ATTR_CATEGORY], [firstItem valueForKey:TASK_ATTR_PRIORITY]];
+        NSString *sqlInsertCategory = [NSString stringWithFormat:@"INSERT OR IGNORE INTO Category (tgid, title, priority) VALUES ('%@', '%@', '%@')", [category valueForKey:CAT_ATTR_TGID], [category valueForKey:CAT_ATTR_TITLE], [category valueForKey:CAT_ATTR_PRIORITY]];
         [self execQuery:sqlInsertCategory];
         
         
-        for (NSDictionary* task in category) {
+        for (NSDictionary* task in [category valueForKey:CAT_ATTR_ITEMS]) {
             NSString *sqlInsertTask = [NSString stringWithFormat:@"INSERT OR IGNORE INTO Task (Content, ts, tgid, isdone) VALUES ('%@', '%@', %@, %@)", [task valueForKey:TASK_ATTR_CONTENT], [task valueForKey:TASK_ATTR_TS], [task valueForKey:TASK_ATTR_TGID], [task valueForKey:TASK_ATTR_ISDONE]];
             [self execQuery:sqlInsertTask];
         }
@@ -184,7 +183,7 @@ static FcDatabase* database = nil;
     [self closeDatabase];
 }
 
-- (NSArray*)getTasks
+- (NSMutableArray*)getTasks
 {
     NSMutableArray* result = [[NSMutableArray alloc] init];
     if (![self openDatabase]) {
@@ -224,9 +223,9 @@ static FcDatabase* database = nil;
     return result;
 }
 
-- (NSArray*)getSortedTasks
+- (NSMutableArray*)getSortedTasks
 {
-    NSArray* tasks = [self getTasks];
+    NSMutableArray* tasks = [self getTasks];
     return [Utils sortTasks:tasks];
 }
 

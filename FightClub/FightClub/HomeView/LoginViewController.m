@@ -212,9 +212,11 @@
     
     [[BusyIndicator getInstance] dismissFromController:self];
     
-    NSMutableArray* sortedTasks = [[NSMutableArray alloc] initWithArray:[Utils sortTasks:Response]];
-    [homeview setTasks:sortedTasks];
+    NSMutableArray* sortedTasks = [Utils sortTasks:Response];
     [[FcDatabase getInstance] insertTasks:sortedTasks willDelete:YES];
+    NSMutableArray* sortedTasksFromDB = [[FcDatabase getInstance] getSortedTasks];
+    [homeview setTasks:sortedTasksFromDB];
+    
     NSData* data = [NSKeyedArchiver archivedDataWithRootObject:[[SecManager getInstance] secAttributes]] ;
     [[NSUserDefaults standardUserDefaults] setObject:data forKey:SEC_DATA];
     [[NSUserDefaults standardUserDefaults] synchronize];
