@@ -130,7 +130,7 @@ static FcDatabase* database = nil;
         return;
     }
     
-    for (NSArray* category in arrayOfTasks) {
+    for (NSMutableDictionary* category in arrayOfTasks) {
         NSString *sqlInsertCategory = [NSString stringWithFormat:@"INSERT OR IGNORE INTO Category (tgid, title, priority) VALUES ('%@', '%@', '%@')", [category valueForKey:CAT_ATTR_TGID], [category valueForKey:CAT_ATTR_TITLE], [category valueForKey:CAT_ATTR_PRIORITY]];
         [self execQuery:sqlInsertCategory];
         

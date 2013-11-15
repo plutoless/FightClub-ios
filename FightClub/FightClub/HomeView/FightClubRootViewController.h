@@ -19,6 +19,8 @@
 @property (nonatomic, retain) UIView* topView;
 @property (nonatomic, retain) UITextField* createTaskField;
 @property (nonatomic, retain) UIView* touchOverlay;
+@property (nonatomic, retain) UILabel* instruction;
+@property (nonatomic, retain) UIToolbar* toolbar;
 
 - (void) updateTasks:(NSMutableArray*)tasks;
 @end

@@ -38,6 +38,7 @@
 #define TASK_LIST_CREATE_TASK_HEIGHT        40
 #define TASK_LIST_CREATE_TASK_BTN_WIDTH     50
 #define TASK_LIST_CREATE_TASK_PADDING       10
+#define TASK_LIST_BOTTOM_BAR_HEIGHT         44
 
 #define SEC_ATTR_USER                       @"user"
 #define SEC_ATTR_PASS                       @"pwd"
